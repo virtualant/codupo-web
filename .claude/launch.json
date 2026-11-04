@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "codupo-static",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "5510", "--directory", "D:/Users/4nt/Desktop/Programming/codupo-web"],
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "5510"],
       "port": 5510
     }
   ]

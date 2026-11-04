@@ -2,7 +2,7 @@
 
 Dokumentacija projekta: što je napravljeno, kojih se pravila držimo i što treba napraviti za preostale stranice.
 
-**Status (4. 11. 2026.):** gotova je samo naslovna stranica (`index.html`). Ostale stranice radimo tek kad vlasnik projekta da dopuštenje, jednu po jednu ili u dogovorenim skupinama.
+**Status (4. 11. 2026.):** gotove su naslovna stranica (`index.html`) i Rješenja (`rjesenja.html`). Ostale stranice radimo tek kad vlasnik projekta da dopuštenje, jednu po jednu ili u dogovorenim skupinama.
 
 GitHub: https://github.com/virtualant/codupo-web (remote `origin`). Remote `jure006` pokazuje na https://github.com/jure006/codupo-web i za sada je prazan.
 
@@ -158,13 +158,13 @@ Prije nove klase provjeri postoji li već uzorak:
 | Edukacije | `.event-list`, `.card-event`, `.event-date`, `.event-day`, `.event-month`, `.event-tag`, `.event-title`, `.event-meta`, `.meta-list`, `.meta-item`, `.meta-dot`, `.price` |
 | Oznake | `.tag-row`, `.tag`, `.chip-row`, `.chip` |
 | Ostalo | `.hero`, `.hero-card`, `.proof`, `.note-box`, `.inhouse-card`, `.conference`, `.book-row`, `.cta-band`, `.mockup-tag`, `.field-input` |
+| Podstranice | `.page-hero`, `.breadcrumb`, `.tool-visual`, `.compare-table`, `.compare-row` |
 
 ### Pregled i snimke zaslona
 
-- Lokalni server: `python -m http.server 5510` (konfiguracija `codupo-static`), stranica na http://localhost:5510.
-- Desktop i tablet: headless Edge (`msedge --headless --screenshot --window-size=1440,...`).
-- Mobitel: headless Edge ne ide ispod oko 500px širine, pa se snima `preview/frame.html?w=390&h=14000&page=<stranica>.html` i reže na 390px.
-- `min-height: 100vh` ostavlja bijeli pojas na dugim snimkama, pa se on izreže prije spremanja.
+- Lokalni server: `python3 -m http.server 5510` (konfiguracija `codupo-static`), stranica na http://localhost:5510. Na ovom računalu `preview_start` iz Browser pane alata ne može pokrenuti Python (sandbox nema pravo na `os.getcwd()`), pa se server pokreće izravno u pozadini preko Bash alata, a preglednik se onda otvara na `http://localhost:5510/<stranica>.html`.
+- Desktop, tablet i mobitel: headless Google Chrome (`--headless --window-size=<širina>,<visina> --screenshot=screens/<stranica>-<veličina>.png`), jer msedge na ovom Macu nije dostupan. Chrome ide i ispod 500px širine, pa `preview/frame.html` više nije potreban za mobilne snimke, no datoteka ostaje u repozitoriju za slučaj da zatreba.
+- `min-height: 100vh` ostavlja bijeli pojas na dugim snimkama ako je stranica kraća od `--window-size` visine; visinu prozora postavljamo na stvarni `document.documentElement.scrollHeight` (izmjeren u Browser pane alatu) pa se pojas ne pojavljuje.
 - Snimke idu u `screens/` kao `<stranica>-desktop.png`, `<stranica>-tablet.png`, `<stranica>-mobile.png`.
 
 ### Provjera prije predaje
@@ -181,7 +181,7 @@ Prije nove klase provjeri postoji li već uzorak:
 | Stranica | Datoteka | `active` | Status |
 |---|---|---|---|
 | Naslovna | `index.html` | `home` | **Gotovo** |
-| Rješenja | `rjesenja.html` | `rjesenja` | Čeka dopuštenje |
+| Rješenja | `rjesenja.html` | `rjesenja` | **Gotovo** |
 | IntegrityUP | `integrityup.html` | `rjesenja` | Čeka dopuštenje |
 | ComplianceUP | `complianceup.html` | `rjesenja` | Čeka dopuštenje |
 | VoiceUP | `voiceup.html` | `rjesenja` | Čeka dopuštenje |
@@ -260,9 +260,11 @@ Za svaku stranicu vrijedi:
 - Stranica završava `.cta-band` trakom s porukom prilagođenom toj stranici.
 - Snimke za desktop, tablet i mobitel idu u `screens/`.
 
-### 6.1 Rješenja (`rjesenja.html`)
+### 6.1 Rješenja (`rjesenja.html`) — Gotovo
 
 Svrha: pregled četiriju digitalnih alata i ulaz u podstranice.
+
+Napomena: umjesto fotografija (otvoreno pitanje 3 i 4 u poglavlju 7 još nije riješeno) svaki od četiri bloka ima `.tool-visual`, ikonski panel u bojama brenda. Kad vlasnik odobri Artlist ili potvrdi Shutterstock licencu, te panele možemo zamijeniti pravim slikama ili snimkama ekrana alata. Tekst za sva četiri alata (uključujući VoiceUP i IntegrityLine, prošireno naspram naslovne) i dalje čeka potvrdu vlasnika (otvoreno pitanje 1).
 
 Sekcije:
 

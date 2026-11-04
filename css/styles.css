@@ -74,6 +74,7 @@
   --gutter: 2rem;
   --section-y: var(--sp-11);
   --hero-y: 8rem;
+  --page-hero-y: var(--sp-9);
   --header-logo-h: 3rem;
   --footer-logo-h: 2.75rem;
   --card-basis: 15rem;
@@ -106,7 +107,9 @@
   --icon-sm: 1rem;
   --icon-md: 1.5rem;
   --icon-lg: 1.75rem;
+  --icon-xl: 2.25rem;
   --icon-tile: 3.5rem;
+  --icon-tile-lg: 5.5rem;
   --stroke: 1.75;
   --border: 1px;
   --border-strong: 2px;
@@ -164,6 +167,9 @@ svg {
 .icon-sm { width: var(--icon-sm); height: var(--icon-sm); }
 .icon-md { width: var(--icon-md); height: var(--icon-md); }
 .icon-lg { width: var(--icon-lg); height: var(--icon-lg); }
+.icon-xl { width: var(--icon-xl); height: var(--icon-xl); }
+
+[id] { scroll-margin-top: var(--sp-11); }
 
 .container {
   width: var(--full);
@@ -416,6 +422,56 @@ site-header {
   border-top: var(--border) solid var(--c-line);
 }
 .price { font-family: var(--f-head); font-size: var(--fs-md); font-weight: var(--fw-bold); color: var(--c-charcoal); }
+
+/* ===================== Page hero (subpages) ===================== */
+.page-hero {
+  background: var(--c-ink);
+  padding-top: var(--page-hero-y);
+  padding-bottom: var(--page-hero-y);
+}
+.page-hero-inner { display: flex; flex-direction: column; gap: var(--sp-4); max-width: var(--hero-content-w); }
+
+.breadcrumb { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); color: var(--c-white-60); margin-bottom: var(--sp-2); }
+.breadcrumb-link:hover { color: var(--c-white); }
+.breadcrumb-current { color: var(--c-white); }
+
+/* ===================== Tool visual (solution pages) ===================== */
+.tool-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  height: var(--media-h);
+  background: var(--c-ink);
+  border-radius: var(--radius-lg);
+  border-top: var(--bar-h) solid var(--c-gold);
+}
+.tool-visual-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-tile-lg);
+  height: var(--icon-tile-lg);
+  border-radius: var(--radius-pill);
+  background: var(--c-teal);
+  color: var(--c-white);
+}
+.tool-visual-label { font-family: var(--f-head); font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--c-white); }
+
+/* ===================== Compare table ===================== */
+.compare-table { display: flex; flex-direction: column; }
+.compare-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  padding-top: var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-top: var(--border) solid var(--c-line);
+}
+.compare-row:first-child { border-top: none; }
+.compare-need { font-size: var(--fs-base); color: var(--c-text); }
 
 /* ===================== Proof strip ===================== */
 .proof { background: var(--c-white); border-bottom: var(--border) solid var(--c-line); }
@@ -727,6 +783,7 @@ site-footer { display: block; background: var(--c-ink); color: var(--c-white-80)
     --fs-stat: 2.125rem;
     --section-y: var(--sp-10);
     --hero-y: var(--sp-10);
+    --page-hero-y: var(--sp-8);
     --gutter: 1.75rem;
     --media-h: 22rem;
     --portrait-h: 28rem;
@@ -790,6 +847,8 @@ site-footer { display: block; background: var(--c-ink); color: var(--c-white-80)
     --gutter: 1rem;
     --section-y: var(--sp-9);
     --hero-y: var(--sp-9);
+    --page-hero-y: var(--sp-7);
+    --icon-tile-lg: 4.5rem;
     --header-logo-h: 2.375rem;
     --media-h: 15rem;
     --portrait-h: 22rem;
@@ -854,6 +913,8 @@ site-footer { display: block; background: var(--c-ink); color: var(--c-white-80)
 
   .value-row { flex-direction: column; }
   .card-value { flex-basis: auto; }
+
+  .compare-row { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
 
   .footer-inner { gap: var(--sp-7); }
   .footer-about { flex-basis: var(--full); }
