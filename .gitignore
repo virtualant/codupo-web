@@ -1,6 +1,3 @@
-# Raw WordPress uploads (286 MB); the site uses the copies in images/
-assets-src/
-
 # OS / editor
 Thumbs.db
 .DS_Store
