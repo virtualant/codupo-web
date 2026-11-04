@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "codupo-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5510", "--directory", "D:/Users/4nt/Desktop/Programming/codupo-web"],
+      "port": 5510
+    }
+  ]
+}
