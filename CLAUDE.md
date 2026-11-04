@@ -264,11 +264,13 @@ Za svaku stranicu vrijedi:
 
 Svrha: pregled četiriju digitalnih alata i ulaz u podstranice.
 
-Napomena o slikama: pregledano je preko 25 fotografija iz `assets-src/` za ova četiri bloka. Velika većina je otrcan WordPress stock/clipart (natpisi „COMPLIANCE”, „INTEGRITY” preko slike, crtani kompasi, stock modeli) koji ne pristaje uz pecb.com smjer, ili su doslovno `shutterstock_*`/`Depositphotos_*` datoteke s neriješenom licencom (otvoreno pitanje 4). Pronađene su dvije fotografije bez teksta i bez `shutterstock_` oznake koje pristaju uz dizajn:
-- `images/compliance-bez-ičega-scaled.jpg` (čovjek radi na laptopu) za IntegrityUP.
-- `images/Slider01.jpg` (ruka zaustavlja domino kockice) za VoiceUP.
+Napomena o slikama: pregledano je preko 30 fotografija iz `assets-src/` za ova četiri bloka. Velika većina je otrcan WordPress stock/clipart (natpisi „COMPLIANCE”, „INTEGRITY” preko slike, crtani kompasi, grupa s podignutim palčevima, stock modeli) koji ne pristaje uz pecb.com smjer, ili su doslovno `shutterstock_*`/`Depositphotos_*` datoteke s neriješenom licencom (otvoreno pitanje 4). Vlasnik je 4. 11. 2026. potvrdio da ipak koristimo najbolje dostupno umjesto `.tool-visual` ikonskog panela za sva četiri bloka:
+- **IntegrityUP** → `images/compliance-bez-ičega-scaled.jpg` (čovjek radi na laptopu).
+- **ComplianceUP** → `images/codupo-edukacije-checking-results.jpg` (dvoje ljudi pregledava izvještaj na ekranu).
+- **VoiceUP** → `images/Slider01.jpg` (ruka zaustavlja domino kockice).
+- **IntegrityLine** → `images/codupo-edukacije-discussion.jpg` (siluete u sastanku, dvostruka ekspozicija nebodera).
 
-ComplianceUP i IntegrityLine zadržavaju `.tool-visual` ikonski panel jer ništa prikladno nije pronađeno za njih. Vlasnik je potvrdio (4. 11. 2026.) da koristimo najbolje dostupno iz `assets-src/`; ipak vrijedi kasnije zamijeniti preostala dva panela i ova dva stock izbora pravim fotografijama alata ili Silvijinim/CODUPO snimkama kad budu dostupne. Tekst za sva četiri alata (uključujući VoiceUP i IntegrityLine, prošireno naspram naslovne) i dalje čeka potvrdu vlasnika (otvoreno pitanje 1).
+Sve četiri su stock fotografije bez `shutterstock_` oznake u nazivu, ali izvor/licenca nije posebno provjerena (vidi otvoreno pitanje 4). `.tool-visual` uzorak ostaje u CSS-u za buduću upotrebu, ali se trenutno nigdje ne koristi na ovoj stranici. Kad vlasnik nabavi prave fotografije alata ili CODUPO-ove snimke, sve četiri bi trebalo zamijeniti. Tekst za sva četiri alata (uključujući VoiceUP i IntegrityLine, prošireno naspram naslovne) i dalje čeka potvrdu vlasnika (otvoreno pitanje 1).
 
 Sekcije:
 
@@ -419,7 +421,7 @@ Sadržaj za predložak: jedan stvarni članak sa starog weba (npr. o Pravilniku 
 1. Potvrda teksta za IntegrityUP, ComplianceUP, VoiceUP i IntegrityLine (opisi su sada napisani bez izvora).
 2. Konferencija: prikazati 2026. kao održanu ili najaviti 2027.? Ima li datum i tema za 2027.?
 3. Smijemo li koristiti Artlist za zamjenu loših fotografija (troši kredite)?
-4. Licence za Shutterstock fotografije na novom webu. Dvije slike bez `shutterstock_` oznake su u upotrebi na `rjesenja.html` (`compliance-bez-ičega-scaled.jpg`, `Slider01.jpg`) uz vlasnikovo dopuštenje da koristimo najbolje dostupno iz `assets-src/`, ali izvor/licenca tih dviju nije posebno provjerena.
+4. Licence za Shutterstock fotografije na novom webu. Četiri slike bez `shutterstock_` oznake su u upotrebi na `rjesenja.html` (`compliance-bez-ičega-scaled.jpg`, `codupo-edukacije-checking-results.jpg`, `Slider01.jpg`, `codupo-edukacije-discussion.jpg`) uz vlasnikovo dopuštenje da koristimo najbolje dostupno iz `assets-src/`, ali izvor/licenca tih četiriju nije posebno provjerena.
 5. Smijemo li prikazati logotipe klijenata?
 6. Format IntegrityTalka (podcast, video, članci).
 7. Engleska verzija: preklopnik HR | EN postoji u headeru, ali EN stranice nisu u planu. Radimo li ih?
