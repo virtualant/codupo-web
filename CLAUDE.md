@@ -2,7 +2,7 @@
 
 Dokumentacija projekta: što je napravljeno, kojih se pravila držimo i što treba napraviti za preostale stranice.
 
-**Status (4. 11. 2026.):** gotove su naslovna stranica (`index.html`) i Rješenja (`rjesenja.html`). Ostale stranice radimo tek kad vlasnik projekta da dopuštenje, jednu po jednu ili u dogovorenim skupinama.
+**Status (6. 11. 2026.):** gotove su naslovna stranica (`index.html`), Rješenja (`rjesenja.html`) i Edukacije (`edukacije.html`). Ostale stranice radimo tek kad vlasnik projekta da dopuštenje, jednu po jednu ili u dogovorenim skupinama.
 
 GitHub: https://github.com/virtualant/codupo-web (remote `origin`). Remote `jure006` pokazuje na https://github.com/jure006/codupo-web i za sada je prazan.
 
@@ -158,7 +158,8 @@ Prije nove klase provjeri postoji li već uzorak:
 | Edukacije | `.event-list`, `.card-event`, `.event-date`, `.event-day`, `.event-month`, `.event-tag`, `.event-title`, `.event-meta`, `.meta-list`, `.meta-item`, `.meta-dot`, `.price` |
 | Oznake | `.tag-row`, `.tag`, `.chip-row`, `.chip` |
 | Ostalo | `.hero`, `.hero-card`, `.proof`, `.note-box`, `.inhouse-card`, `.conference`, `.book-row`, `.cta-band`, `.mockup-tag`, `.field-input` |
-| Podstranice | `.page-hero`, `.breadcrumb`, `.tool-visual`, `.compare-table`, `.compare-row`, `.page-hero-rjesenja` (primjer stranici specifičnog modifikatora za `.page-hero` s Artlist pozadinom) |
+| Podstranice | `.page-hero`, `.breadcrumb`, `.tool-visual`, `.compare-table`, `.compare-row`, `.page-hero-rjesenja` (primjer stranici specifičnog modifikatora za `.page-hero` s Artlist pozadinom), `.month-heading` (grupiranje kalendara po mjesecima) |
+| Mockup obrasci | `.mockup-form`, `.mockup-field`, `.mockup-label`, `.mockup-input` (svijetla pozadina; `.field-input`/`.newsletter-label` ostaju za tamnu pozadinu kao u footeru) |
 
 ### Pregled i snimke zaslona
 
@@ -185,7 +186,7 @@ Prije nove klase provjeri postoji li već uzorak:
 | IntegrityUP | `integrityup.html` | `rjesenja` | Čeka dopuštenje |
 | ComplianceUP | `complianceup.html` | `rjesenja` | Čeka dopuštenje |
 | VoiceUP | `voiceup.html` | `rjesenja` | Čeka dopuštenje |
-| Edukacije | `edukacije.html` | `edukacije` | Čeka dopuštenje |
+| Edukacije | `edukacije.html` | `edukacije` | **Gotovo** |
 | Savjetovanje | `savjetovanje.html` | `savjetovanje` | Čeka dopuštenje |
 | Konferencija | `konferencija.html` | `konferencija` | Čeka dopuštenje |
 | Prethodne konferencije | `prethodne-konferencije.html` | `konferencija` | Čeka dopuštenje |
@@ -322,19 +323,21 @@ Vanjska povjerljiva osoba.
 6. Česta pitanja.
 7. CTA.
 
-### 6.5 Edukacije (`edukacije.html`)
+### 6.5 Edukacije (`edukacije.html`) — Gotovo
 
 Dvije cjeline: kalendar otvorenih edukacija i programi za organizacije.
 
+Sadržaj kalendara preuzet je doslovno s https://codupo.hr/plan-edukacija/ (6. 11. 2026.): 14 termina, studeni 2026. do veljača 2027. Linkovi pojedinih edukacija („Prijava”, „Više o programu”) namjerno vode na `#` jer još nema podstranica za svaku edukaciju ni stvarnih WordPress ciljnih stranica koje bismo mogli linkati. Jedan termin (Korporativno upravljanje i Compliance) na izvornoj stranici nema točan datum, samo „veljača 2027.” - to je prikazano doslovno, bez izmišljanja dana.
+
 1. Page hero: „Edukacije”, gumbi-sidra „Kalendar” i „Programi za organizacije”.
 2. **Kalendar otvorenih edukacija** (`#kalendar`):
-   - Filtar po vrsti (certifikacijske PECB, poludnevne, online) kao vizualni čipovi. Filtriranje može raditi jednostavnim JS-om ili ostati vizualno, dogovoriti.
-   - Popis `.card-event` po mjesecima, studeni 2026. do veljače 2027., sa starog weba: datum, naziv, format, trajanje, cijena (265 € poludnevne, 1.150 € certifikacijske + PDV), gumb „Prijava”.
-3. **PECB certifikacije**: Silver Partner, popis ISO 37301 / 37001 / 37002 / 31000 tečajeva (Lead Implementer, Lead Auditor, Lead Risk Manager), što uključuje.
-4. **Programi za organizacije** (`#programi`): in-house radionice @Work, teme kao čipovi, kako dogovaramo trajanje i format, gumb „Zatražite ponudu”.
-5. **Mockup prijave na edukaciju**: ime, organizacija, e-mail, odabrani termin. Označen `.mockup-tag`.
-6. Izjave polaznika (samo ako postoje stvarne na starom webu).
-7. CTA.
+   - Filtar po vrsti kao vizualni čipovi (`.tag-row`), trenutno samo vizualan, bez JS filtriranja (otvoreno pitanje 8).
+   - Popis `.card-event` grupiran po mjesecima (`.month-heading`): datum, naziv, format, trajanje, cijena, gumb „Prijava” i poveznica „Više o programu”.
+3. **PECB certifikacije**: Silver Partner značka + četiri `.card-solution` (ISO 37301, ISO 37001, ISO 31000, GDPR DPO), razine Lead Implementer/Lead Auditor/Foundation prema popisu s naslovne stranice codupo.hr (izbornik Edukacije → Certifikacije). ISO 37002 certifikacija nije bila na popisu pa nije dodana ovdje.
+4. **Programi za organizacije** (`#programi`): in-house radionice @Work (čipovi preuzeti s codupo.hr izbornika, uključujući IntegrityUP training i Tailor made), slika `sto-je-posao-CO.png` kao na naslovnoj, gumb „Zatražite ponudu” vodi na `kontakt.html`.
+5. **Mockup prijave na edukaciju**: ime, organizacija, e-mail, odabrani termin. Novi `.mockup-form`/`.mockup-field`/`.mockup-label`/`.mockup-input` uzorak (svijetla pozadina, prvi put korišten - postojeći `.field-input` je bio samo za tamnu pozadinu footera).
+6. Izjave polaznika: preskočeno, nema stvarnih izjava na starom webu koje smo pronašli (otvoreno pitanje 9).
+7. CTA: „Imate pitanje o terminima ili grupnoj prijavi?”.
 
 ### 6.6 Savjetovanje (`savjetovanje.html`)
 
@@ -428,6 +431,7 @@ Sadržaj za predložak: jedan stvarni članak sa starog weba (npr. o Pravilniku 
 6. Format IntegrityTalka (podcast, video, članci).
 7. Engleska verzija: preklopnik HR | EN postoji u headeru, ali EN stranice nisu u planu. Radimo li ih?
 8. Treba li filtriranje kalendara i bloga stvarno raditi (JS) ili ostaje vizualno?
+9. Postoje li stvarne izjave polaznika edukacija za objavu na `edukacije.html`? Nismo ih našli na starom webu.
 
 ---
 

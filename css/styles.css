@@ -629,6 +629,15 @@ site-header {
 .step-bar { display: block; width: var(--bar-w); height: var(--bar-h); background: var(--c-gold); margin-bottom: var(--sp-2); }
 
 /* ===================== Events ===================== */
+.month-heading {
+  font-family: var(--f-head);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--c-charcoal);
+  padding-top: var(--sp-6);
+  border-top: var(--border) solid var(--c-line);
+}
+.month-heading:first-child { padding-top: var(--zero); border-top: none; }
 .event-list { display: flex; flex-direction: column; gap: var(--sp-4); flex: 1 1 var(--split-media-basis); }
 .card-event {
   display: flex;
@@ -756,6 +765,20 @@ site-header {
   min-width: var(--zero);
 }
 .field-input:focus { outline: var(--border-strong) solid var(--c-teal); }
+
+.mockup-form { display: flex; flex-direction: column; gap: var(--sp-4); max-width: var(--lead-w); margin-left: auto; margin-right: auto; }
+.mockup-field { display: flex; flex-direction: column; gap: var(--sp-2); }
+.mockup-label { font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--c-charcoal); }
+.mockup-input {
+  font-family: var(--f-body);
+  font-size: var(--fs-sm);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-pill);
+  border: var(--border) solid var(--c-line);
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+.mockup-input:focus { outline: var(--border-strong) solid var(--c-teal); }
 
 /* ===================== Footer component ===================== */
 site-footer { display: block; background: var(--c-ink); color: var(--c-white-80); }
