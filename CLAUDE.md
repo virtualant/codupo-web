@@ -158,7 +158,7 @@ Prije nove klase provjeri postoji li već uzorak:
 | Edukacije | `.event-list`, `.card-event`, `.event-date`, `.event-day`, `.event-month`, `.event-tag`, `.event-title`, `.event-meta`, `.meta-list`, `.meta-item`, `.meta-dot`, `.price` |
 | Oznake | `.tag-row`, `.tag`, `.chip-row`, `.chip` |
 | Ostalo | `.hero`, `.hero-card`, `.proof`, `.note-box`, `.inhouse-card`, `.conference`, `.book-row`, `.cta-band`, `.mockup-tag`, `.field-input` |
-| Podstranice | `.page-hero`, `.breadcrumb`, `.tool-visual`, `.compare-table`, `.compare-row` |
+| Podstranice | `.page-hero`, `.breadcrumb`, `.tool-visual`, `.compare-table`, `.compare-row`, `.page-hero-rjesenja` (primjer stranici specifičnog modifikatora za `.page-hero` s Artlist pozadinom) |
 
 ### Pregled i snimke zaslona
 
@@ -271,6 +271,8 @@ Napomena o slikama: pregledano je preko 30 fotografija iz `assets-src/` za ova �
 - **IntegrityLine** → `images/codupo-edukacije-discussion.jpg` (siluete u sastanku, dvostruka ekspozicija nebodera).
 
 Sve četiri su stock fotografije bez `shutterstock_` oznake u nazivu, ali izvor/licenca nije posebno provjerena (vidi otvoreno pitanje 4). `.tool-visual` uzorak ostaje u CSS-u za buduću upotrebu, ali se trenutno nigdje ne koristi na ovoj stranici. Kad vlasnik nabavi prave fotografije alata ili CODUPO-ove snimke, sve četiri bi trebalo zamijeniti. Tekst za sva četiri alata (uključujući VoiceUP i IntegrityLine, prošireno naspram naslovne) i dalje čeka potvrdu vlasnika (otvoreno pitanje 1).
+
+Page hero pozadina: `.page-hero-rjesenja` (modifikator na `.page-hero`) postavlja `images/rjesenja-page-hero-mesh.png`, Artlist generaciju (Nano Banana 2, 16:9, 2k) odobrenu 6. 11. 2026. kao test (otvoreno pitanje 3). Ilustrirana svjetlucava mreža (plexus) s compliance ikonama (štit, vaga, dokument, lokot, povećalo, rukovanje) na lijevom i desnom rubu, prazan prolaz po sredini gdje sjedi tekst, u stilu hero sekcije na conference.codupo.hr. Isti postojeći gradient overlay (`--c-overlay-start/end`) iz `.hero` koristi se i ovdje za čitljivost teksta.
 
 Sekcije:
 
@@ -420,7 +422,7 @@ Sadržaj za predložak: jedan stvarni članak sa starog weba (npr. o Pravilniku 
 
 1. Potvrda teksta za IntegrityUP, ComplianceUP, VoiceUP i IntegrityLine (opisi su sada napisani bez izvora).
 2. Konferencija: prikazati 2026. kao održanu ili najaviti 2027.? Ima li datum i tema za 2027.?
-3. Smijemo li koristiti Artlist za zamjenu loših fotografija (troši kredite)?
+3. ~~Smijemo li koristiti Artlist za zamjenu loših fotografija (troši kredite)?~~ Vlasnik je 6. 11. 2026. odobrio test: generirana je `images/rjesenja-page-hero-mesh.png` (ilustrirana mreža s compliance ikonama, stil prema conference.codupo.hr) za pozadinu `.page-hero` na Rješenjima, 260 Artlist kredita potrošeno (2 generacije, 130 svaka). Za daljnju upotrebu Artlista na drugim stranicama/slikama treba ponovno pitati, dogovor vrijedi po slučaju.
 4. Licence za Shutterstock fotografije na novom webu. Četiri slike bez `shutterstock_` oznake su u upotrebi na `rjesenja.html` (`compliance-bez-ičega-scaled.jpg`, `codupo-edukacije-checking-results.jpg`, `Slider01.jpg`, `codupo-edukacije-discussion.jpg`) uz vlasnikovo dopuštenje da koristimo najbolje dostupno iz `assets-src/`, ali izvor/licenca tih četiriju nije posebno provjerena.
 5. Smijemo li prikazati logotipe klijenata?
 6. Format IntegrityTalka (podcast, video, članci).

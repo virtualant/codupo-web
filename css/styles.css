@@ -435,6 +435,14 @@ site-header {
 .breadcrumb-link:hover { color: var(--c-white); }
 .breadcrumb-current { color: var(--c-white); }
 
+.page-hero-rjesenja {
+  background-image:
+    linear-gradient(90deg, var(--c-overlay-start), var(--c-overlay-end)),
+    url("../images/rjesenja-page-hero-mesh.png");
+  background-size: cover;
+  background-position: center;
+}
+
 /* ===================== Tool visual (solution pages) ===================== */
 .tool-visual {
   display: flex;
