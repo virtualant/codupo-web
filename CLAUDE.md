@@ -2,7 +2,31 @@
 
 Dokumentacija projekta: što je napravljeno, kojih se pravila držimo i što treba napraviti za preostale stranice.
 
-**Status (6. 11. 2026.):** gotove su naslovna stranica (`index.html`), Rješenja (`rjesenja.html`) i Edukacije (`edukacije.html`). Ostale stranice radimo tek kad vlasnik projekta da dopuštenje, jednu po jednu ili u dogovorenim skupinama.
+**Status (14. 11. 2026.):** gotove su naslovna stranica (`index.html`, verzija 2 - vidi napomenu niže), Rješenja (`rjesenja.html`, verzija 2 - vidi napomenu niže), VoiceUP (`voiceup.html`), IntegrityLine (`integrityline.html`), Edukacije (`edukacije.html`), O nama (`o-nama.html`, verzija 2 - vidi napomenu niže), Savjetovanje (`savjetovanje.html`), Kontakt (`kontakt.html`) i Blog i novosti (`blog.html`, sadržaj izmišljen na vlasnikov izričit zahtjev - vidi napomenu niže i otvoreno pitanje 20). Ostale stranice radimo tek kad vlasnik projekta da dopuštenje, jednu po jednu ili u dogovorenim skupinama.
+
+**Blog i novosti (14. 11. 2026.):** `blog.html` izrađen na vlasnikov zahtjev. Stari blog (https://www.codupo.hr/blog/) nije bio dostupan iz ovog okruženja (connection timeout na WebFetch, curl i Browser pane, pokušano i preko web.archive.org uz korisnikovo pitanje zašto - korisnik je tada eksplicitno rekao da izmislimo naslove objava, nazive kategorija filtra i fotografije kroz Artlist, umjesto daljnjeg pokušaja dohvata stvarnog sadržaja. **Ovo je jedino mjesto na stranici gdje je sadržaj izmišljen, a ne preuzet ili potvrđen s vlasnikom** - iznimka od pravila u poglavlju 1 ("ne izmišljamo činjenice"), izričito odobrena ovom uputom. Prikazano je 6 objava (traženo). Tri su stvarne, već ranije korištene na `index.html` (preuzete sa starog weba: Pravilnik o funkciji usklađenosti 18. 8. 2026., EU Direktiva o antikorupciji 11. 5. 2026., KPI/KRI članak 21. 1. 2026., iste slike `images/Pravilnik-o-funkcij-PU.png`/`direktiva.png`/`slika-za-danas.png`). Tri su izmišljene za ovu priliku (naslovi, datumi, kategorije i Artlist fotografije, ukupno 390 kredita, Nano Banana 2, omjer 3:2, 2K): „Zaštita prijavitelja nepravilnosti...” (3. 12. 2025., kategorija Regulativa, `images/blog-zastita-prijavitelja.png`), „Kako izgraditi kulturu integriteta...” (15. 10. 2025., Poslovna etika, `images/blog-kultura-integriteta.png`), „Zašto jednom godišnje nije dovoljno...” (2. 9. 2025., Edukacija, `images/blog-kontinuirano-ucenje.png`). **Prije stvarne objave stranice treba zamijeniti sve izmišljene naslove i opcionalno fotografije stvarnim objavama.** Filtar po kategoriji (Sve objave / Regulativa / Antikorupcija / Stručni članci / Poslovna etika / Edukacija, nazivi kategorija također izmišljeni na zahtjev) stvarno radi - obična JS skripta na dnu `blog.html` (izvan `js/components.js`, samo za ovu stranicu) prebacuje `.is-hidden` klasu na `.card-post` elementima prema `data-category` atributu i `.tag.is-active` stanju na odabranom gumbu. Ovo djelomično rješava otvoreno pitanje 8 (filtriranje bloga sad stvarno radi; kalendar edukacija i dalje ostaje samo vizualan dok se posebno ne zatraži). Nova CSS stanja: `.tag.is-active` (odabrana kategorija, teal pozadina) i `button.tag` (cursor pointer, ne utječe na `.tag` kao `<span>` na `edukacije.html`), te `.is-hidden` utility klasa (namjerno na samom kraju `styles.css` da uvijek pobijedi u cascade-u nad komponentskim pravilima kao `.card-post { display: flex }`).
+
+**Dopuna 14. 11. 2026. (razmak i Artlist hero):** vlasnik je zatražio više razmaka između filtra kategorija i kartica objava, i Artlist pozadinu za hero u stilu ostalih stranica (dotad je `blog.html` imao običan tamni `.page-hero` jer vlasnik ranije bio tražio fotografije samo za objave, ne za hero). Dodan `.blog-filter { margin-bottom: var(--sp-7) }` (ne globalno na `.tag-row`, da ne poremeti razmak oko `.tag-row` na `edukacije.html` gdje `.month-heading` već ima vlastiti `padding-top`). Generirana `images/blog-page-hero-mesh.png` (130 kredita, Nano Banana 2, 16:9, 2K), ista plexus mreža, ikone promijenjene u četiri blog teme (olovka/uređivanje, dokument s tekstom, govorni oblačić, megafon). Nova `.page-hero-blog` CSS klasa, isti obrazac kao ostalih pet stranica s Artlist herojem.
+
+**Kontakt (14. 11. 2026.):** `kontakt.html` izrađen prema tekstu koji je vlasnik dao izravno u chatu (adresa, e-mail, telefon, OIB, MBS, upis u sudski registar, temeljni kapital, IBAN) uz staru stranicu https://www.codupo.hr/kontakt/ kao referencu za strukturu (obrazac za upit, bez kopiranja teksta). Sekcije: page hero (`.page-hero-kontakt`, nova Artlist mesh pozadina s ikonama poruke/telefona/chata/lokacije, isti postupak kao za `rjesenja.html`/`edukacije.html`/`o-nama.html`/`savjetovanje.html`, 130 kredita), split s kontakt podacima (`.meta-list` s ikonama + `.note-box` za pravne podatke o tvrtki) i mockup kontaktnim obrascem u novoj `.form-card` kartici (ime, e-mail, predmet, poruka, checkbox „Nisam robot”, poveznica na Politiku privatnosti - vodi na `#` kao i u footeru, jer stranica politike privatnosti još ne postoji), te sekcija „Lokacija” s poveznicom na Google karte (bez iframea, prema pravilu). `<site-header>` na ovoj stranici nema `active` atribut jer Kontakt nije u `NAV_ITEMS` nego zaseban gumb (postojeći obrazac iz mape stranica, poglavlje 4). Novi CSS uzorci: `.form-card` (bijela kartica sa zlatnom gornjom trakom za sadržaj obrasca izvan centriranog `.mockup-form` konteksta), `.mockup-textarea`/`.mockup-check-row`/`.mockup-consent` (textarea i checkbox varijante mockup polja, nedostajale su), `.meta-icon` (ikona umjesto točke u `.meta-item`), `.link-plain` (obična linkana riječ u tekstu, teal boja, podcrtavanje na hover - nedostajala je za telefon/e-mail/LinkedIn poveznice izvan headera/footera).
+
+**O nama verzija 2 (14. 11. 2026.):** `o-nama.html` potpuno presložen prema vlasnikovim gotovim tekstovima (poslanim izravno u chatu, ne kao `.docx`), koji zamjenjuju raniji sadržaj preuzet s https://codupo.hr/o-nama/. Stara verzija sačuvana je kao `o-nama-v1.html`, namjerno nigdje nepovezana (isti obrazac kao `index-v1.html`/`edukacije-v1.html`) - rekonstruirana iz razgovora jer `o-nama.html` prije ove izmjene nikad nije bio commitan u git (nema povijesti za vraćanje). Vidi poglavlje 6.11a za detalje.
+
+**Savjetovanje (13. 11. 2026.):** `savjetovanje.html` izrađen prema `/Users/jure/Documents/Projects/Codupo/tekstovi/CODUPO_Savjetovanje_web_tekstovi_i_dizajn.docx` (strukturni brief: hero, šest kartica područja u mreži 3×2, traka „Kako radimo”, kontaktni poziv; napomena „ne kopirati PECB vizualni identitet” - stranica koristi postojeći CODUPO identitet, ne PECB) i `SAVJETOVANJE.docx` (dovršeni tekstovi po pojedinom području, za buduće podstranice). Izrađena je samo pregledna stranica, u skladu s dogovorenim obrascem (jedna stranica odjednom) - vlasnik je zatražio „stranicu za savjetovanje” (jednina). Šest kartica (GAP analize, Implementacija sustava, Funkcija usklađenosti, ERM i unutarnje kontrole, Interni auditi, Poslovna etika) vodi izravno na buduće podstranice (`gap-analiza.html`, `implementacija-sustava.html`, `funkcija-uskladenosti.html`, `erm-unutarnje-kontrole.html`, `interni-auditi.html`, `poslovna-etika.html`), isti obrazac kao za VoiceUP/IntegrityLine: poveznica postoji prije stranice, gradi se kad vlasnik da dopuštenje (tekst za sve već postoji u `SAVJETOVANJE.docx`). Naslovna (`index.html`) ažurirana da njezinih šest kartica u sekciji „Savjetovanje” vodi izravno na iste buduće podstranice umjesto na `savjetovanje.html` sa ili bez sidra. „Kako radimo” traka ponovno koristi postojeći četverokoračni `.card-step` uzorak identičan onome na `o-nama.html`, radi dosljednosti. Brief traži padajući izbornik „Savjetovanje” sa šest podstranica u navigaciji - nije izrađeno, isti otvoreni arhitekturni razlog kao za Edukacije (vidi otvoreno pitanje 17).
+
+**Ispravak razmaka u `.inhouse-body` (12. 11. 2026.):** donji razmak u kartici `.inhouse-card` (koristi se na `index.html` i `edukacije.html`) bio je vizualno prekratak ispod gumba „Saznajte više o edukaciji” iako je CSS padding bio jednak sa svih strana - gumb kao istaknut, obojen element optički djeluje bliže rubu nego tekst pri istom broju piksela. Ispravljeno asimetričnim paddingom: `padding: var(--sp-7) var(--sp-7) var(--sp-9) var(--sp-7)` na desktopu/tabletu, `var(--sp-6) var(--sp-6) var(--sp-8) var(--sp-6)` na mobitelu (donji razmak veći od ostalih). Snimke za `index.html` i `edukacije.html` osvježene na sve tri veličine.
+
+**Edukacije verzija 2 (12. 11. 2026.):** `edukacije.html` je potpuno presložen prema `/Users/jure/Documents/Projects/Codupo/tekstovi/CODUPO_Edukacije_web_tekstovi_i_dizajn.docx` (strukturni brief, traži da stranica bude lako pretraživa i da se ne mora puno skrolati) i `EDUKACIJE.docx` (dovršeni tekstovi po pojedinim temama). Stara verzija sačuvana je kao `edukacije-v1.html`, namjerno nigdje nepovezana, isti obrazac kao za `index-v1.html`. Vidi poglavlje 6.5a za detalje nove strukture.
+
+Napomena: prvi pokušaj te večeri (nadopuna stare stranice bogatim in-house sadržajem izravno na glavnoj stranici) ispostavio se predug i suprotan briefu, koji traži kratku, pretraživu glavnu stranicu s poveznicama na zasebne kataloške podstranice. Taj pokušaj je zamijenjen pravim v2 rasporedom ispod.
+
+**VoiceUP i IntegrityLine (12. 11. 2026.):** izrađene prema `/Users/jure/Documents/Projects/Codupo/tekstovi/RJEŠENJA.docx` (noviji, dovršeniji brief s konkretnim pravnim rokovima i FAQ odgovorima, koji nadopunjuje/precizira tekst iz `CODUPO_Rjesenja_web_tekstovi_i_dizajn.docx`). Obje su nove stranice (`active="rjesenja"`), gumbi na `rjesenja.html` sad vode na njih umjesto na „#”. Novi CSS uzorci: `.faq-list`/`.faq-item`/`.faq-question`/`.faq-icon`/`.faq-answer` (accordion na `<details>`, bez JS-a, „+” se rotira u „×” preko `[open]`), `--card-basis-duo` + `.card-row-duo` (dvije široke kartice u retku, za VoiceUP-ove dvije usluge). `rjesenja.html` dodatno nadopunjen (nije promijenjena struktura, samo dva kratka teksta pod VoiceUP/IntegrityLine karticama usklađena s preciznijom formulacijom iz novog dokumenta).
+
+**Naslovnica verzija 2 (11. 11. 2026.):** `index.html` je potpuno presložen prema `/Users/jure/Documents/Projects/Codupo/tekstovi/CODUPO_Naslovnica_web_tekstovi_i_dizajn.docx` (vlasnikov brief s gotovim tekstovima, strukturom i uputama za dizajn). Stara naslovnica sačuvana je kao `index-v1.html`, namjerno nigdje nepovezana (nema je u navigaciji ni u poveznicama), za slučaj da zatreba. Vidi poglavlje 5a za detalje nove strukture.
+
+**Rješenja verzija 2 (12. 11. 2026.):** `rjesenja.html` je presložen prema `/Users/jure/Documents/Projects/Codupo/tekstovi/CODUPO_Rjesenja_web_tekstovi_i_dizajn.docx` (vlasnikov brief). Glavna promjena: stranica sad ističe samo VoiceUP i IntegrityLine kao aktivna rješenja (svaki s kratkim opisom i gumbom prema budućoj zasebnoj podstranici), dok su IntegrityUP i ComplianceUP prikazani diskretno, označeni oznakom „U pripremi” (nova `.card-soon`/`.badge-soon` klasa), čime je riješeno otvoreno pitanje 12. Usporedna tablica iz stare verzije uklonjena je jer je brief ne predviđa u novom rasporedu. Vlasnik je potvrdio (odgovor „Možeš, pa ćemo ih kasnije lako nadopuniti”, zatim suženo na „prvo samo preslaganje glavne stranice”) da podstranice `voiceup.html` i `integrityline.html` dolaze kasnije, kad se za njih da dopuštenje - brief već sadrži gotov tekst za obje (hero, značajke/usluge, FAQ za VoiceUP, koraci za IntegrityLine), pa ih kad se krene graditi treba raditi iz tog istog dokumenta, ne iznova. Gumbi na `rjesenja.html` ("Saznajte više o VoiceUP-u", "Istražite IntegrityLine", "Uskoro više" za IntegrityUP/ComplianceUP) već vode na `voiceup.html`/`integrityline.html`/`integrityup.html`/`complianceup.html` (isti obrazac kao ranije za IntegrityUP/ComplianceUP: poveznica postoji prije nego stranica, gradi se kad vlasnik da dopuštenje). Footer (`js/components.js`) i naslovna (`index.html`) ažurirani su da VoiceUP/IntegrityLine vode izravno na te buduće stranice umjesto na sidra unutar `rjesenja.html`.
+
+**Napomena:** od 6. 11. 2026. ne radimo git commit/push nakon svake stranice - vlasnik je jedini koji radi na ovom repozitoriju i sam upravlja commitovima. I dalje radimo provjeru pravila i snimke zaslona, samo bez git koraka na kraju.
 
 GitHub: https://github.com/virtualant/codupo-web (remote `origin`). Remote `jure006` pokazuje na https://github.com/jure006/codupo-web i za sada je prazan.
 
@@ -99,7 +123,7 @@ Bez build koraka: čisti HTML, CSS i JS.
 
 ### Komponente
 
-- `<site-header active="kljuc">`: topbar (adresa, telefon, e-mail, LinkedIn, HR | EN) i navigacija s logom. Ključevi za `active`: `home`, `rjesenja`, `edukacije`, `savjetovanje`, `konferencija`, `blog`, `o-nama`. Gumb „Kontakt” vodi na `kontakt.html`.
+- `<site-header active="kljuc">`: topbar (adresa, telefon, e-mail, LinkedIn, HR | EN) i navigacija s logom. Ključevi za `active`: `home`, `rjesenja`, `edukacije`, `savjetovanje`, `konferencija`, `blog`, `o-nama`. Gumb „Kontakt” vodi na `kontakt.html`. Redoslijed u izborniku (`NAV_ITEMS` niz): Savjetovanje, Rješenja, Edukacije, Konferencija, O nama, Blog i novosti (promijenjeno 11. 11. 2026. prema brief dokumentu za naslovnicu verziju 2, poglavlje 5a).
   - Na tabletu i mobitelu izbornik se skriva iza gumba `.nav-toggle` i otvara u normalnom toku stranice (klasa `.is-open`), bez apsolutnog pozicioniranja.
 - `<site-footer>`: logo, kratki opis, newsletter mockup, stupci Rješenja / CODUPO / Kontakt, donja traka s godinom i pravnim poveznicama.
 - Novu stavku navigacije dodajemo samo u `NAV_ITEMS` u `js/components.js`.
@@ -152,14 +176,15 @@ Prije nove klase provjeri postoji li već uzorak:
 | Sekcije i naslovi | `.section`, `.section-soft`, `.section-head`, `.section-head-center`, `.section-head-row`, `.section-title`, `.section-title-light`, `.section-lead`, `.eyebrow`, `.eyebrow-light`, `.eyebrow-mark`, `.body-text`, `.text-light` |
 | Gumbi i poveznice | `.button-primary`, `.button-outline`, `.button-ghost`, `.button-light`, `.button-row`, `.link-arrow`, `.link-arrow-mark` |
 | Dvostupčani raspored | `.split`, `.split-media`, `.split-content`, `.split-start`, `.split-top`, `.media-photo`, `.media-tall`, `.media-portrait` |
-| Kartice | `.card-row`, `.card-row-scroll`, `.card-solution`, `.card-step`, `.card-event`, `.card-value`, `.card-post`, `.card-label`, `.card-title`, `.card-text`, `.card-kicker`, `.icon-tile` |
+| Kartice | `.card-row`, `.card-row-scroll`, `.card-row-wide`, `.card-row-duo` (dvije šire kartice u retku, npr. VoiceUP usluge), `.card-solution` (+ modifikator `.card-soon` za diskretne „u pripremi” kartice), `.card-step`, `.card-event`, `.card-value`, `.card-post`, `.card-label`, `.card-title`, `.card-text`, `.card-kicker`, `.icon-tile` |
 | Brojke | `.stat-row`, `.stat-row-light`, `.stat-item`, `.stat-number`, `.stat-label` |
 | Usluge | `.service-list`, `.service-item`, `.service-num`, `.service-title`, `.service-text` |
 | Edukacije | `.event-list`, `.card-event`, `.event-date`, `.event-day`, `.event-month`, `.event-tag`, `.event-title`, `.event-meta`, `.meta-list`, `.meta-item`, `.meta-dot`, `.price` |
-| Oznake | `.tag-row`, `.tag`, `.chip-row`, `.chip` |
+| Oznake | `.tag-row`, `.tag` (+ `.is-active` kad je `.tag` ujedno i klikabilan filter gumb, npr. `blog.html`), `.chip-row`, `.chip`, `.badge-soon` (diskretna „U pripremi” oznaka, npr. na `rjesenja.html`) |
 | Ostalo | `.hero`, `.hero-card`, `.proof`, `.note-box`, `.inhouse-card`, `.conference`, `.book-row`, `.cta-band`, `.mockup-tag`, `.field-input` |
-| Podstranice | `.page-hero`, `.breadcrumb`, `.tool-visual`, `.compare-table`, `.compare-row`, `.page-hero-rjesenja` (primjer stranici specifičnog modifikatora za `.page-hero` s Artlist pozadinom), `.month-heading` (grupiranje kalendara po mjesecima) |
-| Mockup obrasci | `.mockup-form`, `.mockup-field`, `.mockup-label`, `.mockup-input` (svijetla pozadina; `.field-input`/`.newsletter-label` ostaju za tamnu pozadinu kao u footeru) |
+| Podstranice | `.page-hero`, `.breadcrumb`, `.tool-visual`, `.compare-table`, `.compare-row`, `.page-hero-rjesenja` (primjer stranici specifičnog modifikatora za `.page-hero` s Artlist pozadinom), `.month-heading` (grupiranje kalendara po mjesecima), `.faq-list`/`.faq-item`/`.faq-question`/`.faq-icon`/`.faq-answer` (accordion bez JS-a, `<details>`/`[open]`) |
+| Mockup obrasci | `.mockup-form`, `.mockup-field`, `.mockup-label`, `.mockup-input` (svijetla pozadina; `.field-input`/`.newsletter-label` ostaju za tamnu pozadinu kao u footeru), `.search-row` (mockup tražilice na tamnoj pozadini, npr. hero na `edukacije.html`) |
+| Raspored | `.block-stack` (okomito slaganje više blokova unutar jednog containera s razmakom, npr. dva `.split` bloka jedan ispod drugog) |
 
 ### Pregled i snimke zaslona
 
@@ -167,6 +192,7 @@ Prije nove klase provjeri postoji li već uzorak:
 - Desktop, tablet i mobitel: headless Google Chrome (`--headless --window-size=<širina>,<visina> --screenshot=screens/<stranica>-<veličina>.png`), jer msedge na ovom Macu nije dostupan. Chrome ide i ispod 500px širine, pa `preview/frame.html` više nije potreban za mobilne snimke, no datoteka ostaje u repozitoriju za slučaj da zatreba.
 - `min-height: 100vh` ostavlja bijeli pojas na dugim snimkama ako je stranica kraća od `--window-size` visine; visinu prozora postavljamo na stvarni `document.documentElement.scrollHeight` (izmjeren u Browser pane alatu) pa se pojas ne pojavljuje.
 - Snimke idu u `screens/` kao `<stranica>-desktop.png`, `<stranica>-tablet.png`, `<stranica>-mobile.png`.
+- Čitanje `.docx` brief dokumenata (npr. vlasnikovi tekstovi za stranice): `pandoc` nije instaliran na ovom računalu, pa se dokument otvara ručno - `unzip` na `word/document.xml`, pa Python (`xml`/regex) izvlači tekst i stilove (`w:pStyle`) paragraf po paragraf. Za obradu fotografija instaliran je Pillow (`pip3 install --user Pillow`) jer `sips --cropOffset` centrirano reže sliku na nepredvidiv način za precizno kadriranje.
 
 ### Provjera prije predaje
 
@@ -182,28 +208,40 @@ Prije nove klase provjeri postoji li već uzorak:
 | Stranica | Datoteka | `active` | Status |
 |---|---|---|---|
 | Naslovna | `index.html` | `home` | **Gotovo** |
-| Rješenja | `rjesenja.html` | `rjesenja` | **Gotovo** |
+| Rješenja | `rjesenja.html` | `rjesenja` | **Gotovo** (verzija 2) |
 | IntegrityUP | `integrityup.html` | `rjesenja` | Čeka dopuštenje |
 | ComplianceUP | `complianceup.html` | `rjesenja` | Čeka dopuštenje |
-| VoiceUP | `voiceup.html` | `rjesenja` | Čeka dopuštenje |
-| Edukacije | `edukacije.html` | `edukacije` | **Gotovo** |
-| Savjetovanje | `savjetovanje.html` | `savjetovanje` | Čeka dopuštenje |
+| VoiceUP | `voiceup.html` | `rjesenja` | **Gotovo** |
+| IntegrityLine | `integrityline.html` | `rjesenja` | **Gotovo** |
+| Edukacije | `edukacije.html` | `edukacije` | **Gotovo** (verzija 2) |
+| Otvorene edukacije | `otvorene-edukacije.html` | `edukacije` | Čeka dopuštenje |
+| Certifikacijski programi | `certifikacijski-programi.html` | `edukacije` | Čeka dopuštenje |
+| Compliance akademija | `compliance-akademija.html` | `edukacije` | Čeka dopuštenje |
+| In-house edukacije | `in-house-edukacije.html` | `edukacije` | Čeka dopuštenje |
+| Ljudska strana Compliance-a | `ljudska-strana-compliancea.html` | `edukacije` | Čeka dopuštenje |
+| Savjetovanje | `savjetovanje.html` | `savjetovanje` | **Gotovo** |
+| GAP analize i procjene usklađenosti | `gap-analiza.html` | `savjetovanje` | Čeka dopuštenje |
+| Implementacija sustava upravljanja | `implementacija-sustava.html` | `savjetovanje` | Čeka dopuštenje |
+| Uspostava i razvoj funkcije usklađenosti | `funkcija-uskladenosti.html` | `savjetovanje` | Čeka dopuštenje |
+| ERM i unutarnje kontrole | `erm-unutarnje-kontrole.html` | `savjetovanje` | Čeka dopuštenje |
+| Interni auditi i pre-auditi | `interni-auditi.html` | `savjetovanje` | Čeka dopuštenje |
+| Poslovna etika i organizacijska kultura | `poslovna-etika.html` | `savjetovanje` | Čeka dopuštenje |
 | Konferencija | `konferencija.html` | `konferencija` | Čeka dopuštenje |
 | Prethodne konferencije | `prethodne-konferencije.html` | `konferencija` | Čeka dopuštenje |
-| Blog i novosti | `blog.html` | `blog` | Čeka dopuštenje |
+| Blog i novosti | `blog.html` | `blog` | **Gotovo** (sadržaj djelomično izmišljen, vidi status) |
 | Članak (predložak) | `clanak.html` | `blog` | Čeka dopuštenje |
-| O nama | `o-nama.html` | `o-nama` | Čeka dopuštenje |
-| Kontakt | `kontakt.html` | (nijedan, gumb Kontakt) | Čeka dopuštenje |
+| O nama | `o-nama.html` | `o-nama` | **Gotovo** |
+| Kontakt | `kontakt.html` | (nijedan, gumb Kontakt) | **Gotovo** |
 
 Napomena: naslovna i footer trenutno vode na sidra `rjesenja.html#integrityup`, `#complianceup`, `#voiceup`, `#integrityline` i na `konferencija.html#prethodne`. Kad nastanu podstranice, te poveznice treba prebaciti na nove datoteke (ili zadržati sidra na pregledu i iz njih voditi dalje).
 
 ---
 
-## 5. Naslovna stranica (gotovo)
+## 5. Naslovna stranica — verzija 1 (arhivirano)
 
-Datoteka `index.html`, snimke `screens/home-desktop.png`, `home-tablet.png`, `home-mobile.png`.
+Datoteka `index-v1.html`. Nije povezana nigdje (ni u navigaciji ni u poveznicama) - čuva se za slučaj da zatreba usporedba ili povratak. Snimke zaslona za ovu verziju nisu čuvane odvojeno (prepisane su s verzijom 2 u `screens/home-*.png`); sama datoteka ostaje netaknuta kao arhiva teksta i strukture.
 
-Sekcije redom:
+Sekcije redom (v1):
 
 1. **Hero** (`.hero`)
    - Pozadina: fotografija s konferencije 2025 (`Compliance-konferencija-2025_RG-60-scaled.jpg`) s tamnim prijelazom.
@@ -247,7 +285,35 @@ Prilagodba:
   - Rješenja i blog su horizontalni scroll redovi, a koraci kratka okomita lista.
   - Termin edukacije ima datum i naslov u retku i gumb „Prijava” ispod.
 
-Otvoreno na naslovnoj: tekst kartica IntegrityUP, ComplianceUP, VoiceUP i IntegrityLine napisan je bez izvora na starom webu i treba ga potvrditi vlasnik.
+Otvoreno na v1: tekst kartica IntegrityUP, ComplianceUP, VoiceUP i IntegrityLine napisan je bez izvora na starom webu i treba ga potvrditi vlasnik.
+
+---
+
+## 5a. Naslovna stranica — verzija 2 (trenutno aktivna, `index.html`)
+
+Datoteka `index.html`, snimke `screens/home-desktop.png`, `home-tablet.png`, `home-mobile.png`. Potpuno presložena 11. 11. 2026. prema vlasnikovom brief dokumentu `/Users/jure/Documents/Projects/Codupo/tekstovi/CODUPO_Naslovnica_web_tekstovi_i_dizajn.docx` (gotovi tekstovi, struktura i upute za dizajn/developera). Dokument je otvoren preko `pandoc`/ručne XML ekstrakcije jer `pandoc` nije instaliran na računalu (vidi poglavlje 3, Alati).
+
+**Globalna promjena:** `NAV_ITEMS` u `js/components.js` promijenjen je u novi redoslijed iz brief dokumenta: Savjetovanje, Rješenja, Edukacije, Konferencija, O nama, Blog i novosti (Kontakt ostaje zaseban gumb kao i prije). Ovo utječe na header na SVIM stranicama, ne samo naslovnicu.
+
+**Novi CSS uzorci:** `--card-basis-wide` token + `.card-row-wide` klasa (forsira 3 kartice po retku kroz flexbox za mrežu od 6 kartica, bez CSS grida).
+
+**Dizajn napomena iz briefa, primijenjena posvuda:** na mobitelu se kartice slažu jedna ispod druge (obično stacking), **ne** horizontalni scroll-snap redovi kakvi se koriste na ostalim stranicama - `.card-row-scroll` namjerno nije korišten nigdje u verziji 2.
+
+Sekcije redom (v2):
+
+1. **Hero** (`.hero`): pozadina promijenjena na `Eksternalizirana-funkcija.png` (autentična fotografija poslovne suradnje, po uputi iz briefa). Nadnaslov „CODUPO · Compliance · Rizici · Poslovna etika”, H1 „Od zahtjeva do učinkovitih sustava. Od vrijednosti do odgovornog poslovanja.”, dva gumba (Istražite savjetodavne usluge / Pronađite edukaciju). Bez kartice „Sljedeća edukacija” - uklonjena po uputi „bez velikog popisa ISO normi” i radi jednostavnosti (dva jasna gumba, bez dodatnih elemenata).
+2. **Brzi odabir**: „Stručna podrška za odgovornije i otpornije poslovanje”. Tri `.card-solution` (Savjetovanje, Edukacije, Rješenja).
+3. **Savjetovanje, šest područja** (`.section-soft`): „Stručnost koja se pretvara u konkretne rezultate”. Šest `.card-solution` u `.card-row-wide` (3×2 kroz flexbox): GAP analize, Implementacija sustava, Funkcija usklađenosti, ERM i unutarnje kontrole, Interni auditi, Poslovna etika i kultura. Od 13. 11. 2026. poveznice vode izravno na šest budućih podstranica savjetovanja (vidi poglavlje 6.6), isti obrazac kao za VoiceUP/IntegrityLine na Rješenjima - prije su vodile na `savjetovanje.html` sa sidrima, no otkad `savjetovanje.html` postoji kao prava pregledna stranica, logičnije je voditi izravno na krajnje odredište.
+4. **Zašto CODUPO**: slika `SilvijaVig202211-scaled.jpg`, četiri argumenta (`.service-item` uzorak, strelica umjesto broja), gumb „Upoznajte CODUPO” → `o-nama.html`.
+5. **Edukacije** (`.section-soft`): tri `.card-solution` (kategorije) + stvarni „najbliži termini” (3 najbliža termina od 11. 11. 2026. nadalje, preuzeta iz `edukacije.html` kalendara: 27.11., 30.11.-3.12., 4.12.). Brief traži „dinamički modul”, no stranica je statična (bez build koraka) - termini su ručno upisani s datumom izrade i trebaju se ažurirati kad prođu.
+6. **Istaknuta edukacija**: „Ljudska strana compliancea”, jedan `.inhouse-card` (ponovno iskorišten kao širok horizontalni blok, slika `sto-je-posao-CO.png`).
+7. **Rješenja koja podržavaju integritet**: SAMO VoiceUP i IntegrityLine (dva `.card-solution`). IntegrityUP i ComplianceUP namjerno izostavljeni s naslovnice po izričitoj uputi iz briefa („ne prikazivati kao aktivne proizvode”). Oznaku „U pripremi” za njih brief traži na stranici Rješenja (`rjesenja.html`), ne na naslovnici - to još nije napravljeno, vidi otvoreno pitanje niže.
+8. **Iskustvo i povjerenje** (`.proof`): tri potvrđena broja (9+ zemalja, 185+ programa, 2050+ sudionika) - četvrti broj iz briefa („XX+ savjetodavnih klijenata”) izostavljen jer ne postoji potvrđen podatak (vidi otvoreno pitanje).
+9. **Compliance konferencija** (`.conference`): sljedeće izdanje „Compliance konferencija 2027., 28. rujna 2027.” - datum preuzet izravno iz briefa (prvi put dobivena potvrda datuma 2027., rješava otvoreno pitanje 2 iz poglavlja 7).
+10. **Stručni uvidi i novosti** (ista tri članka kao v1, blog nije dinamički - statična stranica).
+11. **Završni poziv**: „Razgovarajmo o izazovima vaše organizacije”, jedan gumb „Kontaktirajte nas”, bez obrasca.
+
+**SEO:** `<title>` i meta opis postavljeni točno prema poglavlju 13 briefa.
 
 ---
 
@@ -261,7 +327,9 @@ Za svaku stranicu vrijedi:
 - Stranica završava `.cta-band` trakom s porukom prilagođenom toj stranici.
 - Snimke za desktop, tablet i mobitel idu u `screens/`.
 
-### 6.1 Rješenja (`rjesenja.html`) — Gotovo
+### 6.1 Rješenja (`rjesenja.html`) — verzija 1 (arhivirano)
+
+Napomena: ovo poglavlje opisuje prvu verziju stranice (do 11. 11. 2026.), zamijenjenu verzijom 2 prema briefu za Rješenja - vidi poglavlje 6.1a. Tekst ostaje ovdje kao povijesni zapis (fotografije, otvorena pitanja o slikama i dalje vrijede, jer ih verzija 2 ponovno koristi za preostale dvije aktivne kartice).
 
 Svrha: pregled četiriju digitalnih alata i ulaz u podstranice.
 
@@ -285,6 +353,20 @@ Sekcije:
    - **IntegrityLine**, vanjski sustav za prijavu nepravilnosti: anonimnost, rokovi, EU Direktiva o zaštiti zviždača. Nema zasebnu podstranicu, sve je ovdje.
 3. Usporedna tablica „Koji alat vam treba” (flexbox redovi, ne `<table>` s gridom): potreba → alat.
 4. CTA: „Pokažemo vam alat na vašem primjeru”, demo razgovor.
+
+### 6.1a Rješenja (`rjesenja.html`) — verzija 2 (trenutno aktivna, 12. 11. 2026.)
+
+Presložena prema `/Users/jure/Documents/Projects/Codupo/tekstovi/CODUPO_Rjesenja_web_tekstovi_i_dizajn.docx`. Svrha se sužava: stranica sad ističe samo dva aktivna rješenja (VoiceUP, IntegrityLine) i diskretno najavljuje dva u razvoju (IntegrityUP, ComplianceUP), umjesto da sva četiri prikazuje kao ravnopravna. Usporedna tablica uklonjena jer brief ne predviđa taj element u novom rasporedu stranice.
+
+Sekcije:
+
+1. Page hero (`.page-hero-rjesenja`, isti mesh kao v1): „Rješenja koja olakšavaju odgovorno poslovanje” + rečenica iz briefa.
+2. **Aktivna rješenja**: dva `.split` bloka (izmjenični lijevo/desno, iste fotografije kao v1 - `Slider01.jpg` za VoiceUP, `codupo-edukacije-discussion.jpg` za IntegrityLine), svaki s kratkim tekstom iz briefa (bez popisa značajki - taj detalj ide na buduće podstranice) i gumbom koji vodi na `voiceup.html`/`integrityline.html`. Sidra `#voiceup`/`#integrityline` zadržana radi postojećih poveznica.
+3. **U pripremi**: dvije diskretne kartice (`.card-solution.card-soon`, nova `.badge-soon` oznaka „U pripremi”) za IntegrityUP i ComplianceUP, s poveznicom „Uskoro više” prema `integrityup.html`/`complianceup.html`. Sidra `#integrityup`/`#complianceup` zadržana.
+4. Kratka poruka o povezanosti stručnosti (VoiceUP) i tehnologije (IntegrityLine), `.note-box`.
+5. CTA: „Razgovarajmo o potrebama vaše organizacije”.
+
+Otvoreno: `voiceup.html` i `integrityline.html` još ne postoje kao stvarne datoteke - brief već sadrži gotov tekst za obje (vidi poglavlja 6.4 i novo poglavlje za IntegrityLine), grade se kad vlasnik da dopuštenje.
 
 ### 6.2 IntegrityUP (`integrityup.html`)
 
@@ -311,19 +393,30 @@ Upravljanje usklađenošću. Ista struktura kao IntegrityUP:
 6. Česta pitanja.
 7. CTA.
 
-### 6.4 VoiceUP (`voiceup.html`)
+### 6.4 VoiceUP (`voiceup.html`) — Gotovo
 
-Vanjska povjerljiva osoba.
+Vanjska povjerljiva osoba i zaštita dostojanstva radnika. Konačan tekst (hero, dvije zasebno prikazane usluge s pravnim osnovama, „Zašto VoiceUP”/„Što dobivate” u pet točaka, FAQ s 5 pitanja i pravnim referencama, CTA) preuzet je iz `/Users/jure/Documents/Projects/Codupo/tekstovi/RJEŠENJA.docx` (noviji, precizniji dokument - sadrži i stvarne rokove: 7 dana potvrda primitka, 30 odnosno najkasnije 90 dana povratna informacija za prijave nepravilnosti, 8 dana za pritužbe zbog uznemiravanja). Prvi brief dokument (`CODUPO_Rjesenja_web_tekstovi_i_dizajn.docx`) poslužio je samo za raspored stranice.
 
-1. Page hero.
-2. Zakonski okvir: tko mora imati povjerljivu osobu, što kaže zakon (provjeriti s vlasnikom točne reference).
-3. Što preuzimamo: zaprimanje prijava, komunikacija s prijaviteljem, rokovi, izvještavanje.
-4. Kako teče prijava (koraci).
-5. Povezanost s IntegrityLine sustavom.
-6. Česta pitanja.
-7. CTA.
+1. Page hero (obična tamna `.page-hero`, bez posebne Artlist pozadine): „Neovisnost. Povjerljivost. Stručno postupanje.” + CTA „Zatražite informacije o VoiceUP-u”.
+2. Dvije usluge u odvojenim širim karticama (`.card-row-duo`, novi `--card-basis-duo` token), pravne osnove nisu spojene: 1. vanjska povjerljiva osoba (Zakon o zaštiti prijavitelja nepravilnosti) i 2. vanjska osoba za zaštitu dostojanstva radnika (čl. 134. Zakona o radu), svaka s popisom aktivnosti (`.meta-list`).
+3. „Zašto VoiceUP” (`.split`) + „Što dobivate” (pet koristi, `.service-list` uzorak).
+4. Česta pitanja, accordion (`.faq-list`/`<details>`, 5 pitanja), s izvorom na dnu: Zakon o zaštiti prijavitelja nepravilnosti (NN 46/22, 136/25) i čl. 134. Zakona o radu.
+5. CTA: „Povjerenje počinje sigurnošću da će netko saslušati i odgovorno postupiti.”
 
-### 6.5 Edukacije (`edukacije.html`) — Gotovo
+### 6.4a IntegrityLine (`integrityline.html`) — Gotovo
+
+Nova podstranica (prije je IntegrityLine imao samo sidro na `rjesenja.html`; brief za Rješenja ga sad tretira kao zasebnu stranicu). Konačan tekst u `RJEŠENJA.docx`. Napomena iz prvog briefa i dalje vrijedi: nema generičke lažne snimke softvera u hero sekciji dok ne postoji stvarna snimka sučelja (vidi otvoreno pitanje 16) - koristi se obična tamna `.page-hero` pozadina.
+
+1. Page hero: „Siguran kanal za prijavu. Povjerljiva komunikacija. Više povjerenja.” + CTA „Zatražite prezentaciju rješenja”.
+2. Šest kartica značajki (`.card-row-wide`, 3×2): povjerljivost i anonimnost, jednostavno podnošenje, dvosmjerna komunikacija, praćenje postupanja, kontrolirani pristup, podrška usklađenosti (GDPR + zaštita prijavitelja - šesta točka je nova naspram prvog briefa).
+3. „Kako funkcionira”, tri koraka (`.card-step`): prijava, komunikacija, postupanje.
+4. „Zašto IntegrityLine” + „Što dobivate” (`.split`, isti obrazac kao na VoiceUP stranici).
+5. Nenametljiv blok o povezanosti s VoiceUP uslugom (`.note-box`).
+6. CTA: „Želite uspostaviti siguran digitalni kanal za prijavljivanje nepravilnosti?”
+
+### 6.5 Edukacije (`edukacije.html`) — verzija 1 (arhivirano)
+
+Napomena: ovo poglavlje opisuje prvu verziju stranice (do 12. 11. 2026., sačuvana kao `edukacije-v1.html`), zamijenjenu verzijom 2 - vidi poglavlje 6.5a. Kalendar i PECB sadržaj ostaju povijesno točni i u v2 (ponovno korišteni), opis ispod čuva se kao zapis stare, duže jednodijelne strukture.
 
 Dvije cjeline: kalendar otvorenih edukacija i programi za organizacije.
 
@@ -334,23 +427,40 @@ Sadržaj kalendara preuzet je doslovno s https://codupo.hr/plan-edukacija/ (6. 1
    - Filtar po vrsti kao vizualni čipovi (`.tag-row`), trenutno samo vizualan, bez JS filtriranja (otvoreno pitanje 8).
    - Popis `.card-event` grupiran po mjesecima (`.month-heading`): datum, naziv, format, trajanje, cijena, gumb „Prijava” i poveznica „Više o programu”.
 3. **PECB certifikacije**: Silver Partner značka + četiri `.card-solution` (ISO 37301, ISO 37001, ISO 31000, GDPR DPO), razine Lead Implementer/Lead Auditor/Foundation prema popisu s naslovne stranice codupo.hr (izbornik Edukacije → Certifikacije). ISO 37002 certifikacija nije bila na popisu pa nije dodana ovdje.
-4. **Programi za organizacije** (`#programi`): in-house radionice @Work (čipovi preuzeti s codupo.hr izbornika, uključujući IntegrityUP training i Tailor made), slika `sto-je-posao-CO.png` kao na naslovnoj, gumb „Zatražite ponudu” vodi na `kontakt.html`.
-5. **Mockup prijave na edukaciju**: ime, organizacija, e-mail, odabrani termin. Novi `.mockup-form`/`.mockup-field`/`.mockup-label`/`.mockup-input` uzorak (svijetla pozadina, prvi put korišten - postojeći `.field-input` je bio samo za tamnu pozadinu footera).
+4. **Programi za organizacije** (`#programi`): in-house radionice @Work, slika `sto-je-posao-CO.png`, gumb „Zatražite ponudu”.
+5. **Mockup prijave na edukaciju**: ime, organizacija, e-mail, odabrani termin.
 6. Izjave polaznika: preskočeno, nema stvarnih izjava na starom webu koje smo pronašli (otvoreno pitanje 9).
 7. CTA: „Imate pitanje o terminima ili grupnoj prijavi?”.
 
-### 6.6 Savjetovanje (`savjetovanje.html`)
+### 6.5a Edukacije (`edukacije.html`) — verzija 2 (trenutno aktivna, 12. 11. 2026.)
 
-Četiri cjeline iz briefa, osam usluga raspoređenih unutar njih.
+Potpuno presložena prema `/Users/jure/Documents/Projects/Codupo/tekstovi/CODUPO_Edukacije_web_tekstovi_i_dizajn.docx` (strukturni brief - traži da stranica bude lako pretraživa na desktopu i mobitelu, bez dugog skrolanja i bez dugačkog padajućeg izbornika) i `EDUKACIJE.docx` (dovršeni tekstovi po temama, iskorišteni za listu stvarnih naziva edukacija po kategorijama). Glavna razlika od v1: dugi sadržaj (puni popisi tema, puna in-house priča) premješten je iz glavne stranice u poveznice prema zasebnim kataloškim podstranicama (po istom obrascu kao IntegrityUP/VoiceUP - poveznica postoji prije stranice, stranica se gradi kad vlasnik da dopuštenje), a glavna stranica ostaje kratka: hero s tražilicom, četiri ulazne kategorije, izdvojeni termini, pa tek onda puni kalendar.
 
-1. Page hero: „Savjetovanje”.
-2. **GAP analize** (`#gap`): GAP analiza i evaluacija compliance programa, što dobivate (izvještaj, plan, prioriteti).
-3. **Uspostava i razvoj compliance funkcije** (`#funkcija`): eksternalizirana funkcija usklađenosti, mentoring i coaching, Pravilnik za državna poduzeća (`Pravilnik-o-funkcij-PU.png`, `Eksternalizirana-funkcija.png`).
-4. **Implementacija sustava** (`#implementacija`): dizajn compliance programa, ISO 37301 / 37001 / 37002, Integrity Line, eksternalizirana povjerljiva osoba.
-5. **Politike i ostale savjetodavne usluge** (`#politike`): etički kodeks, politike (sukob interesa, darovi, antikorupcija), izgradnja compliance kulture (Integrity Culture).
-6. Kako radimo: ponoviti četiri koraka s naslovne (`.card-step`).
-7. ISO norme (`.tag-row`) i PECB značka.
-8. CTA: „Dogovorite uvodni razgovor”.
+Sekcije:
+
+1. Page hero: „Znanje koje se primjenjuje. Kompetencije koje stvaraju vrijednost.” + mockup tražilice (`.search-row`, novi uzorak - input + gumb „Pretraži”, s `.mockup-tag` jer ne filtrira stvarno) + dva CTA gumba „Pregled edukacija” (`#nacini`) i „Kalendar termina” (`#kalendar`).
+2. **Odaberite način učenja** (`#nacini`): četiri `.card-solution` - Otvorene edukacije → `otvorene-edukacije.html`, Certifikacijski programi → `certifikacijski-programi.html`, Compliance akademija → `compliance-akademija.html`, In-house edukacije → `in-house-edukacije.html` (nijedna od ove četiri podstranice još ne postoji).
+3. **Izdvojene edukacije**: tri `.card-event` s najbližim potvrđenim terminima (isti podaci kao u kalendaru ispod, bez dupliciranja novih činjenica), gumb „Detalji i prijava” vodi na `#kalendar` jer još nema zasebne detaljne stranice po edukaciji (predložak iz briefa, poglavlje 06, nije izrađen).
+4. **Kalendar** (`#kalendar`): nepromijenjen stvaran sadržaj (14 termina) iz v1, uz dodani vizualni prikaz „Lista / Kalendarski prikaz (uskoro)” (samo „Lista” stvarno postoji - pošteno označeno kao „uskoro”, ne lažni prikaz) i prošireni tematski filtri iz briefa (Usklađenost, Upravljanje rizicima, Antikorupcija i etika, ISO standardi, GDPR, Državna poduzeća), i dalje samo vizualni, bez JS filtriranja.
+5. **PECB certifikacije**: nepromijenjeno iz v1.
+6. **In-house edukacije** (`#programi`): kratak uvod (2 rečenice) + gumb „Zatražite in-house program” → `in-house-edukacije.html`, zatim jedna `.inhouse-card` kartica koja najavljuje „Ljudska strana Compliance-a” → `ljudska-strana-compliancea.html` (isti obrazac kao na naslovnoj, puni tekst te edukacije premješten je s glavne stranice na tu buduću podstranicu).
+7. Mockup prijave na edukaciju: nepromijenjeno iz v1.
+8. CTA: „Imate pitanje o terminima ili grupnoj prijavi?”, nepromijenjeno.
+
+Novi CSS uzorak: `.search-row` (flex red za mockup tražilicu, stupac na mobitelu).
+
+Otvoreno: pet poveznica (`otvorene-edukacije.html`, `certifikacijski-programi.html`, `compliance-akademija.html`, `in-house-edukacije.html`, `ljudska-strana-compliancea.html`) vodi na stranice koje još ne postoje - brief već ima gotov tekst za sve (poglavlja 03-08), grade se kad vlasnik da dopuštenje. Podizbornik u headeru (Sve edukacije / Kalendar / Certifikacijski programi / Compliance akademija / In-house edukacije), koji brief traži u glavnoj navigaciji, nije izrađen - trenutna `<site-header>` komponenta nema padajuće podizbornike, to bi bila veća arhitekturna promjena (vidi otvoreno pitanje 17).
+
+### 6.6 Savjetovanje (`savjetovanje.html`) — Gotovo
+
+Izrađena 13. 11. 2026. prema `CODUPO_Savjetovanje_web_tekstovi_i_dizajn.docx` (strukturni brief) i `SAVJETOVANJE.docx` (dovršeni tekstovi po području, čuvaju se za šest budućih podstranica). Raspored prati brief doslovno, bez dodavanja elemenata koje brief ne traži (npr. ISO oznake ili PECB značka na preglednoj stranici nisu dio ovog briefa - za razliku od ranijeg, prednacrtnog plana koji je ovo poglavlje prije sadržavalo).
+
+1. Page hero (`.page-hero-savjetovanje`, Artlist mesh pozadina dodana 14. 11. 2026. na vlasnikov zahtjev - vidi otvoreno pitanje 3, bez gumba u herou - isti obrazac kao `rjesenja.html`): nadnaslov „Savjetovanje”, H1 „Stručna rješenja za odgovornije i učinkovitije poslovanje”, uvodni tekst doslovno iz briefa.
+2. **Šest područja savjetovanja** (`.card-row-wide`, 3×2): GAP analize i procjene usklađenosti, Implementacija sustava upravljanja, Uspostava i razvoj funkcije usklađenosti, Integrirano upravljanje rizicima i unutarnje kontrole, Interni auditi i pre-auditi, Poslovna etika i organizacijska kultura. Svaka kartica ima naslov, jednu rečenicu iz briefa i poveznicu „Saznajte više” prema budućoj podstranici (vidi tablicu u poglavlju 4) - isti obrazac kao VoiceUP/IntegrityLine: poveznica postoji prije stranice, tekst za podstranice već gotov u `SAVJETOVANJE.docx`.
+3. **Kako radimo**: identičan četverokoračni `.card-step` blok kao na `o-nama.html` (Razgovor i analiza / Plan i dizajn / Uvođenje i edukacija / Praćenje i poboljšanje), radi dosljednosti kroz stranice.
+4. CTA: „Razgovarajmo o potrebama vaše organizacije”.
+
+Otvoreno: brief traži padajući izbornik „Savjetovanje” sa šest podstranica u glavnoj navigaciji - nije izrađeno, isti arhitekturni razlog kao za Edukacije (vidi otvoreno pitanje 17). Šest podstranica (`gap-analiza.html`, `implementacija-sustava.html`, `funkcija-uskladenosti.html`, `erm-unutarnje-kontrole.html`, `interni-auditi.html`, `poslovna-etika.html`) grade se kad vlasnik da dopuštenje.
 
 ### 6.7 Konferencija (`konferencija.html`)
 
@@ -374,17 +484,16 @@ Tri dijela iz briefa: program, predavači, prijave.
 3. Galerija fotografija: flexbox s prelamanjem, na mobitelu horizontalni scroll.
 4. CTA: prijava na sljedeću konferenciju.
 
-### 6.9 Blog i novosti (`blog.html`)
+### 6.9 Blog i novosti (`blog.html`) — Gotovo
 
-Tri kategorije iz briefa: stručni članci, aktualnosti, IntegrityTalk.
+Izrađena 14. 11. 2026. Raniji nacrt ispod (tri kategorije iz briefa, istaknuti članak, IntegrityTalk blok, newsletter, paginacija) zamijenjen je jednostavnijom strukturom jer vlasnik nije dao brief dokument za ovu stranicu, nego je zatražio direktno u chatu: popis objava i filtar po kategoriji, 6 objava, uz izmišljen sadržaj gdje stvaran nije bio dostupan (stari blog je bio nedohvatljiv iz ovog okruženja - vidi status napomenu na vrhu datoteke i otvoreno pitanje 20). Stvarna struktura:
 
-1. Page hero: „Blog i novosti”.
-2. Kategorije kao čipovi/kartice: Stručni članci, Aktualnosti, IntegrityTalk (vizualni filtar).
-3. Istaknuti članak (veliki `.split`).
-4. Popis članaka `.card-post` (naslovi i datumi sa starog weba), s prelamanjem u redove. Na mobitelu jedan stupac.
-5. **IntegrityTalk** blok: što je (podcast/razgovori, potvrditi format), zadnje epizode.
-6. Newsletter poziv (isti mockup kao u footeru ili poveznica na njega).
-7. Paginacija kao vizualni element.
+1. Page hero: obična tamna `.page-hero` (bez Artlist pozadine), eyebrow „Blog i novosti”, H1 „Stručni uvidi i aktualnosti iz svijeta usklađenosti”.
+2. „Pregledajte objave po temi”: `.tag-row` od šest `.tag` gumba (Sve objave + pet kategorija), funkcionalan filtar (vidi status napomenu za tehničke detalje).
+3. `.card-row` od 6 `.card-post` kartica (tri stvarne s naslovne, tri izmišljene), svaka s `data-category` atributom koji filtar koristi.
+4. CTA: „Imate pitanje ili prijedlog teme za sljedeći članak?”.
+
+Izostavljeno naspram starog nacrta (nije traženo, izbjegnuto širenje opsega): istaknuti članak, IntegrityTalk blok, newsletter poziv (već postoji u footeru na svakoj stranici), paginacija. Pojedinačne stranice članaka (`clanak.html` predložak, poglavlje 6.10) i dalje čekaju dopuštenje - gumbi „Pročitajte” trenutno vode na `#`.
 
 ### 6.10 Članak, predložak (`clanak.html`)
 
@@ -397,41 +506,70 @@ Tri kategorije iz briefa: stručni članci, aktualnosti, IntegrityTalk.
 
 Sadržaj za predložak: jedan stvarni članak sa starog weba (npr. o Pravilniku od 18. 8. 2026.).
 
-### 6.11 O nama (`o-nama.html`)
+### 6.11 O nama — verzija 1 (arhivirano)
 
-Šest cjelina iz briefa:
+Datoteka `o-nama-v1.html`. Nije povezana nigdje (ni u navigaciji ni u poveznicama) - isti obrazac arhiviranja kao `index-v1.html`/`edukacije-v1.html`. Sadržaj preuzet doslovno s https://codupo.hr/o-nama/ (6. 11. 2026., WebFetch sažetak, ne puni citat). Šest cjelina:
 
-1. Page hero: „O nama”.
-2. **Tko je CODUPO i kome pomaže**: kratka priča, kome pomažemo (državna poduzeća, financijski sektor, velike i srednje organizacije), 9 zemalja.
-3. **Kako radimo**: pristup i četiri koraka.
-4. **Misija, vizija, vrijednosti**: tekstovi sa starog weba, vrijednosti Integritet / Inovativnost / Izvrsnost (`.card-value`).
-5. **Ljudi iza CODUPO-a**: Silvija Vig, Ljiljana Hrastinski Jurčec i ostali tim (stvarni podaci i fotografije). Snimke s mobitela (npr. EFFECTUS) zamijeniti generiranim verzijama samo uz dogovor.
-6. **Dokazi iskustva**: brojke, PECB Silver Partner (četvrtu godinu zaredom), logotipi klijenata iz 9 zemalja (iz `assets-src/`, uz potvrdu da ih smijemo prikazati).
-7. **Autorski rad i doprinos struci**: knjiga „Poslovna etika” (VERN i CODUPO), popis predavanja i nastupa sa starog weba, članstva i funkcije (npr. Etičko povjerenstvo INA Grupe).
-8. CTA.
+1. Page hero: „O nama”, s objašnjenjem naziva (COmplianceom DO Uspješnog POslovanja).
+2. **Tko smo**: ime i akronim, „a one stop shop for compliance & ethics”, kome pomažemo (državna poduzeća i javni sektor, financijski sektor, velike i srednje organizacije), 9 zemalja.
+3. **Kako radimo**: ista četiri koraka kao na naslovnoj (`.card-step`), ponovljeno doslovno.
+4. **Misija, vizija, vrijednosti**: misija i vizija preuzete sa stranice (sažetak, vlasnik ima punu verziju), tri `.card-value` isti tekst kao na naslovnoj radi dosljednosti.
+5. **Ljudi iza CODUPO-a**: Silvija Vig (kraća biografija) i Ljiljana Hrastinski Jurčec (kraća biografija), oboje `.tag-row` s članstvima (ICC Hrvatska, INA Grupa, Sudačko vijeće, Pravosudna akademija, HGK).
+6. **Dokazi iskustva**: `.proof`/`stat-row` (9+ zemalja, 2050+ polaznika, 185+ programa, 25+ godina).
+7. **Autorski rad i doprinos struci**: knjiga „Poslovna etika”, i 15 predavanja/panela 2018. do 2024. sa stranice (`.service-item` uzorak, godina umjesto rednog broja), uključujući stvarnu YouTube poveznicu na PECB Anti-Bribery Conference 2022. panel (https://youtu.be/MxXXvXxnxPk, s playlist i vremenskom oznakom).
+8. CTA: „Upoznajmo se”.
 
-### 6.12 Kontakt (`kontakt.html`)
+### 6.11a O nama — verzija 2 (trenutno aktivna, 14. 11. 2026.)
 
-1. Page hero: „Kontakt”.
+Datoteka `o-nama.html`, snimke `screens/o-nama-*.png`. Potpuno presložena prema vlasnikovim gotovim tekstovima, poslanim izravno u chatu (ne kao `.docx` brief poput ostalih stranica). Struktura i redoslijed sekcija isti kao v1, ali gotovo sav tekst zamijenjen, znatno proširen (puni certifikati i reference za oboje iz tima), s nekoliko elemenata namjerno izostavljenih jer ih novi tekst ne spominje:
+
+1. **Page hero**: nadnaslov „O nama”, H1 „Stručnost koja donosi promjenu. Integritet koji stvara vrijednost.”, dva odvojena odlomka uvoda. Objašnjenje naziva (COmplianceom DO Uspješnog POslovanja) izostavljeno jer ga novi tekst ne sadrži.
+2. **Tko smo**: nova tri odlomka, bez starog `.meta-list` popisa (novi tekst ne daje jasnu listu segmenata) i bez citata „a one stop shop for compliance & ethics” (nije u novom tekstu). Ista fotografija (`Eksternalizirana-funkcija.png`).
+3. **Kako radimo**: namjerno odstupa od zajedničkog četverokoračnog `.card-step` uzorka (koji i dalje koriste `index.html` i `savjetovanje.html`) - novi tekst za ovu stranicu daje četiri NAČELA, ne četiri koraka procesa (Razumijevanje poslovanja, Prilagođena rješenja, Praktična implementacija, Prijenos znanja). Prikazano kroz postojeći `.service-list` uzorak (01-04) umjesto `.step-row`, uz uvodni i dva završna odlomka kao `.section-lead`.
+4. **Misija, vizija, vrijednosti**: nov tekst za misiju i viziju; tri `.card-value` zadržane, ali preslagane po novom redoslijedu (Integritet, Izvrsnost, Inovativnost - prije Integritet, Inovativnost, Izvrsnost) i s novim opisima.
+5. **Naš tim**: bitno proširene biografije oboje (Silvija Vig: puni popis certifikata CCEP-I/LPEC/ISO 37301/37001/31000/COSO ERM/DPO/Executive Coach/NLP/CTT/medijatorica, konkretni projekti uključujući prvo hrvatsko državno poduzeće certificirano prema ISO 37301, RIT Croatia predavanja; Ljiljana Hrastinski Jurčec: detaljnija sudačka karijera, povjerenstva Ministarstva pravosuđa). Dodan nov kratak `.note-box` „Stručna suradnja i partnerstva”. Stari `.tag-row` s članstvima uklonjen jer se dio podataka u njemu (Sudačko vijeće trgovačkih sudova, Pravosudna akademija) ne poklapa točno s novim, preciznijim biografijama - izbjegnuto dupliciranje potencijalno zastarjelog podatka.
+6. **Iskustvo i reference** (preimenovano s „Dokazi iskustva”): nova tri uvodna odlomka (industrije klijenata, opseg usluga, napomena da detalji dolaze na upit) kao `.section-lead`, zatim nepromijenjen `.proof`/`stat-row` (9+ zemalja, 2050+ polaznika, 185+ programa, 25+ godina) - vidi otvoreno pitanje 18 za novi predloženi raspis brojki koji nije primijenjen.
+7. **Autorski rad i doprinos struci**: naslov i uvod promijenjeni („Znanje dijelimo. Struku razvijamo.”), stari detaljni popis 15 predavanja/panela 2018.-2024. (uključujući YouTube poveznicu na PECB Anti-Bribery Conference 2022.) zamijenjen novim sažetim popisom pet kategorija doprinosa (Knjige i publikacije, Istraživanja, Međunarodna suradnja, Predavanja i stručni nastupi, Compliance konferencija) kroz `.service-list`. Korica knjige „Poslovna etika” zadržana (`PoslovnaEtika2023-3D.png”) - vidi otvoreno pitanje 19 za dodatne dvije knjige koje vlasnik spominje.
+8. CTA: nepromijenjeno („Upoznajmo se”).
+
+Novi CSS uzorak (nasljeđen iz v1): `.block-stack` za okomito slaganje više `.split` blokova unutar jedne sekcije bez inline stilova. Nema novih CSS uzoraka u v2 - sve ponovno iskorišteno iz postojećih klasa (`.service-list`, `.note-box`, `.section-lead`).
+
+### 6.12 Kontakt (`kontakt.html`) — Gotovo
+
+Izrađena 14. 11. 2026. prema tekstu koji je vlasnik dao izravno u chatu, uz staru stranicu https://www.codupo.hr/kontakt/ kao strukturnu referencu (ne kao izvor teksta). Stvarna struktura:
+
+1. Page hero (`.page-hero-kontakt`, Artlist mesh pozadina s ikonama poruke/telefona/chata/lokacije): eyebrow „Kontakt”, H1 „Razgovarajmo o potrebama vaše organizacije”, uvodna rečenica. `<site-header>` bez `active` atributa (Kontakt nije u `NAV_ITEMS`, zaseban je gumb).
 2. Dvostupčani `.split`:
-   - **Lijevo:** kontakt podaci (adresa, telefon, e-mail, OIB, MBS, LinkedIn), radno vrijeme ako postoji podatak.
-   - **Desno:** **kontakt obrazac kao mockup** (ime i prezime, organizacija, e-mail, telefon, tema kao izbor: savjetovanje / edukacije / rješenja / konferencija / ostalo, poruka, privola). Jasno označen `.mockup-tag` „Mockup obrasca, ne šalje podatke”, gumb `type="button"`.
-3. Karta: statična slika ili poveznica „Otvori u Google kartama”. Bez iframea koji zahtijeva kolačiće, osim ako se dogovori drugačije.
-4. Kratki FAQ: kako izgleda uvodni razgovor, koliko traje, je li besplatan (potvrditi).
+   - **Lijevo:** „CODUPO d.o.o.” naslov, `.meta-list` s ikonama (adresa, telefon kao `tel:` poveznica, e-mail kao `mailto:` poveznica, LinkedIn), zatim `.note-box` s pravnim podacima o tvrtki (OIB, MBS, upis u sudski registar, temeljni kapital, IBAN i banka) - doslovno prema tekstu koji je dao vlasnik.
+   - **Desno:** `.form-card` (nova klasa, bijela kartica sa zlatnom gornjom trakom) s mockup obrascem: ime i prezime, e-mail, predmet, poruka (textarea), checkbox „Nisam robot”, rečenica s poveznicom na Politiku privatnosti (vodi na `#`, kao i istoimena poveznica u footeru - stranica politike privatnosti još ne postoji), gumb „Pošaljite poruku” (`type="button"`). Sve označeno `.mockup-tag` „Mockup obrasca, ne šalje podatke”.
+3. Sekcija „Lokacija”: adresa i jedna rečenica, gumb „Otvori u Google kartama” (`.button-outline`, vanjska poveznica na Google Maps pretragu stvarne adrese, bez iframea).
+
+Stranica se namjerno ne završava `.cta-band` trakom (sama je odredište za sve druge CTA pozive na stranici) i nema FAQ sekciju iz ranijeg nacrta ovog poglavlja - nije bilo potvrđenih odgovora (trajanje/besplatnost uvodnog razgovora), pa nije izmišljeno (vidi otvoreno pitanje 15, "ne izmišljamo činjenice" u poglavlju 1).
 
 ---
 
 ## 7. Otvorena pitanja za vlasnika
 
-1. Potvrda teksta za IntegrityUP, ComplianceUP, VoiceUP i IntegrityLine (opisi su sada napisani bez izvora).
-2. Konferencija: prikazati 2026. kao održanu ili najaviti 2027.? Ima li datum i tema za 2027.?
-3. ~~Smijemo li koristiti Artlist za zamjenu loših fotografija (troši kredite)?~~ Vlasnik je 6. 11. 2026. odobrio test: generirana je `images/rjesenja-page-hero-mesh.png` (ilustrirana mreža s compliance ikonama, stil prema conference.codupo.hr) za pozadinu `.page-hero` na Rješenjima, 260 Artlist kredita potrošeno (2 generacije, 130 svaka). Za daljnju upotrebu Artlista na drugim stranicama/slikama treba ponovno pitati, dogovor vrijedi po slučaju.
+1. ~~Potvrda teksta za IntegrityUP, ComplianceUP, VoiceUP i IntegrityLine (opisi su sada napisani bez izvora).~~ Djelomično riješeno 12. 11. 2026.: VoiceUP i IntegrityLine sad imaju gotov, vlasnikov tekst u brief dokumentu za Rješenja (poglavlja 2 i 3). IntegrityUP i ComplianceUP i dalje čekaju - brief ih namjerno ne razrađuje jer alati još nisu spremni.
+2. ~~Konferencija: prikazati 2026. kao održanu ili najaviti 2027.? Ima li datum i tema za 2027.?~~ Riješeno 11. 11. 2026. brief dokumentom: naslovnica v2 najavljuje „Compliance konferencija 2027., 28. rujna 2027.” Temu za 2027. i status prijava brief izričito traži ažurirati prije objave (vidi otvoreno pitanje 15).
+3. ~~Smijemo li koristiti Artlist za zamjenu loših fotografija (troši kredite)?~~ Vlasnik je 6. 11. 2026. odobrio: generirane su `images/rjesenja-page-hero-mesh.png`, `images/edukacije-page-hero-mesh.png` i `images/o-nama-page-hero-mesh.png` (ilustrirane mreže s tematskim ikonama, stil prema conference.codupo.hr) za `.page-hero` pozadine na te tri stranice, ukupno 520 Artlist kredita (4 generacije, 130 svaka). Vlasnik je ponovno odobrio 14. 11. 2026. za Savjetovanje: generirana `images/savjetovanje-page-hero-mesh.png` (Nano Banana 2, 16:9, 2K, 130 kredita), ista plexus mreža, ikone promijenjene u šest tema savjetovanja (povećalo, zupčanik, kompas, grafikon rasta, podsjetnik s kvačicom, rukovanje). Nova `.page-hero-savjetovanje` CSS klasa, isti obrazac kao ostale tri. Vlasnik je sam zatražio Artlist generaciju 14. 11. 2026. za Kontakt ("Slobodno se koristi artlist alatom"): generirana `images/kontakt-page-hero-mesh.png` (Nano Banana 2, 16:9, 2K, 130 kredita), ista plexus mreža, ikone promijenjene u četiri kontakt teme (poruka/e-mail, telefon, chat, lokacija). Nova `.page-hero-kontakt` CSS klasa, isti obrazac kao ostale četiri. Za daljnju upotrebu na drugim stranicama treba ponovno pitati, dogovor vrijedi po slučaju.
 4. Licence za Shutterstock fotografije na novom webu. Četiri slike bez `shutterstock_` oznake su u upotrebi na `rjesenja.html` (`compliance-bez-ičega-scaled.jpg`, `codupo-edukacije-checking-results.jpg`, `Slider01.jpg`, `codupo-edukacije-discussion.jpg`) uz vlasnikovo dopuštenje da koristimo najbolje dostupno iz `assets-src/`, ali izvor/licenca tih četiriju nije posebno provjerena.
 5. Smijemo li prikazati logotipe klijenata?
 6. Format IntegrityTalka (podcast, video, članci).
 7. Engleska verzija: preklopnik HR | EN postoji u headeru, ali EN stranice nisu u planu. Radimo li ih?
-8. Treba li filtriranje kalendara i bloga stvarno raditi (JS) ili ostaje vizualno?
+8. ~~Treba li filtriranje kalendara i bloga stvarno raditi (JS) ili ostaje vizualno?~~ Djelomično riješeno 14. 11. 2026.: filtar na `blog.html` sad stvarno radi (vidi poglavlje 6.9). Kalendar edukacija (`edukacije.html`) ostaje samo vizualan dok se posebno ne zatraži.
 9. Postoje li stvarne izjave polaznika edukacija za objavu na `edukacije.html`? Nismo ih našli na starom webu.
+10. Puni tekst misije i vizije na `o-nama.html` je sažetak (WebFetch nije dao doslovni citat pune dužine) - treba li ga zamijeniti točnim tekstom sa stranice?
+11. Postoji li YouTube ili drugi link za video „Meet the Trainer, Silvija Vig” spomenut na starom webu? WebFetch ga nije pronašao kao poveznicu.
+12. ~~Naslovnica v2, sekcija „Rješenja”: brief traži diskretnu oznaku „U pripremi” za IntegrityUP i ComplianceUP na stranici `rjesenja.html`.~~ Riješeno 12. 11. 2026. brief dokumentom za Rješenja: oznaka „U pripremi” dodana na `rjesenja.html` (`.badge-soon`/`.card-soon`).
+13. Naslovnica v2: broj „XX+ savjetodavnih klijenata” iz briefa nije prikazan jer ne postoji potvrđen podatak - treba li ga dodati kao četvrti broj u sekciji „Iskustvo i povjerenje” kad se potvrdi?
+14. Naslovnica v2, sekcija „Edukacije”: brief traži „dinamički modul” najbližih termina koji se sam ažurira; stranica je statična (bez build koraka), pa su termini ručno upisani (27. 11., 30. 11.-3. 12., 4. 12. 2026.) i trebaju se ručno ažurirati kad prođu ili kad kalendar na `edukacije.html` promijeni.
+15. Brief dokument (poglavlje 14, „Prije objave potvrditi”) traži potvrdu: točne brojke i metodologiju/razdoblje za statistiku; stvaran status i funkcionalnosti IntegrityLine digitalnog sustava; dostupnost IntegrityUP-a i ComplianceUP-a; status prijava i temu za Compliance konferenciju 2027.; prava korištenja fotografija i reference.
+16. Djelomično riješeno 12. 11. 2026.: `voiceup.html` i `integrityline.html` su izrađene prema novijem, precizniijem `RJEŠENJA.docx` dokumentu (konkretni pravni rokovi i reference su sad ispisani na stranici - vidi 6.4/6.4a). I dalje čeka prije stvarne objave: dvostruka pravna provjera navedenih pragova/rokova (dokument ih daje kao gotove, ali nijedan izvor nije formalno pravno recenziran), potvrda stvarnih funkcionalnosti IntegrityLine-a (posebno anonimna dvosmjerna komunikacija, prava pristupa, praćenje statusa - stranica ne obećava automatsku zakonsku usklađenost, samo „podršku usklađenosti”), stvarna snimka sučelja IntegrityLine-a (hero trenutačno nema sliku/mockup sučelja, samo tamnu pozadinu, po uputi da se ne koriste lažne snimke softvera), te određivanje stvarnih odredišnih stranica/obrazaca za CTA gumbe (trenutačno svi vode na `kontakt.html`).
+17. Brief za Edukacije traži padajući podizbornik u glavnoj navigaciji (Sve edukacije / Kalendar / Certifikacijski programi / Compliance akademija / In-house edukacije) umjesto duge liste. `<site-header>` trenutno podržava samo ravnu navigaciju bez podizbornika - treba odlučiti radimo li to kao veću izmjenu `js/components.js` (utjecalo bi na sve stranice) kad podstranice budu gotove, ili ostaje ravna navigacija uz dobre poveznice na samoj stranici Edukacije.
+18. O nama v2, sekcija „Iskustvo i reference”: novi vlasnikov tekst predlaže drugačiji raspis brojki („XX+ organizacija kojima smo pružili savjetodavnu podršku”, „XXX+ provedenih edukacijskih programa”, „X.XXX+ sudionika naših edukacija”, „XX zemalja”, razdoblje 2021. do 2026.) umjesto postojećeg potvrđenog `.proof`/`stat-row` (9+ zemalja, 2050+ polaznika, 185+ programa, 25+ godina). Brojke u novom tekstu su doslovno placeholderi (XX/XXX/X.XXX) pa nisu primijenjene - čeka se stvaran broj po svakoj od četiri nove kategorije prije zamjene postojećeg, potvrđenog stat-reda.
+19. O nama v2, sekcija „Autorski rad”: vlasnikova napomena uz stavku „Knjige i publikacije” kaže „(dodati slike moje tri knjige)” - trenutno je prikazana samo jedna korica (`PoslovnaEtika2023-3D.png`). Čekaju se još dvije naslovnice knjiga.
+20. **Blog i novosti (`blog.html`):** tri od šest objava, sve nazive kategorija filtra i tri fotografije su izmišljeni na vlasnikov izričit zahtjev jer stari blog (codupo.hr/blog) nije bio dohvatljiv iz ovog okruženja u trenutku izrade - vidi status napomenu na vrhu datoteke za potpun popis. **Prije stvarne objave treba:** zamijeniti tri izmišljene objave (i po potrebi tri stvarne isto, ako vlasnik želi drukčiji odabir) stvarnim naslovima/sadržajem sa starog bloga ili novim tekstovima, potvrditi nazive i broj kategorija filtra (trenutno: Regulativa, Antikorupcija, Stručni članci, Poslovna etika, Edukacija), te odlučiti ostaju li Artlist fotografije ili se zamjenjuju stvarnim slikama uz članke. Pokušati ponovno dohvatiti stari blog kad stranica codupo.hr opet bude dostupna iz ovog okruženja, radi usporedbe sa stvarnim sadržajem.
 
 ---
 

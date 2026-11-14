@@ -3,12 +3,12 @@
    <site-header active="..."></site-header> and <site-footer></site-footer>. */
 
 const NAV_ITEMS = [
+  { key: "savjetovanje", label: "Savjetovanje", href: "savjetovanje.html" },
   { key: "rjesenja", label: "Rješenja", href: "rjesenja.html" },
   { key: "edukacije", label: "Edukacije", href: "edukacije.html" },
-  { key: "savjetovanje", label: "Savjetovanje", href: "savjetovanje.html" },
   { key: "konferencija", label: "Konferencija", href: "konferencija.html" },
-  { key: "blog", label: "Blog i novosti", href: "blog.html" },
   { key: "o-nama", label: "O nama", href: "o-nama.html" },
+  { key: "blog", label: "Blog i novosti", href: "blog.html" },
 ];
 
 const ICON = {
@@ -94,8 +94,8 @@ class SiteFooter extends HTMLElement {
             <span class="footer-heading">Rješenja</span>
             <a class="footer-link" href="rjesenja.html#integrityup">IntegrityUP</a>
             <a class="footer-link" href="rjesenja.html#complianceup">ComplianceUP</a>
-            <a class="footer-link" href="rjesenja.html#voiceup">VoiceUP</a>
-            <a class="footer-link" href="rjesenja.html#integrityline">IntegrityLine</a>
+            <a class="footer-link" href="voiceup.html">VoiceUP</a>
+            <a class="footer-link" href="integrityline.html">IntegrityLine</a>
           </div>
           <div class="footer-col">
             <span class="footer-heading">CODUPO</span>
