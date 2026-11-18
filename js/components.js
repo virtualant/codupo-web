@@ -38,7 +38,6 @@ class SiteHeader extends HTMLElement {
       <div class="topbar">
         <div class="container topbar-inner">
           <div class="topbar-group">
-            <span class="topbar-item">${ICON.pin}Kutnjački put 15, Zagreb</span>
             <a class="topbar-item" href="tel:+38513862961">${ICON.phone}+385 1 3862 961</a>
             <a class="topbar-item" href="mailto:info@codupo.hr">${ICON.mail}info@codupo.hr</a>
           </div>

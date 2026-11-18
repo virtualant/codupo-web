@@ -96,6 +96,7 @@
   --portrait-h: 36rem;
   --media-h: 26rem;
   --book-w: 4.5rem;
+  --book-w-lg: 9rem;
   --badge-w: 4.5rem;
   --stat-basis: 8rem;
   --stat-basis-sm: 4.5rem;
@@ -1000,6 +1001,44 @@ button.tag { cursor: pointer; }
 .book-title { font-family: var(--f-head); font-size: var(--fs-md); font-weight: var(--fw-semibold); color: var(--c-charcoal); line-height: var(--lh-snug); }
 .book-text { font-size: var(--fs-sm); color: var(--c-muted); }
 
+/* Istaknuta, uvećana i klikabilna kartica knjige (O nama, "Autorski rad") */
+.book-feature { border: var(--border) solid var(--c-line); border-radius: var(--radius-lg); overflow: hidden; }
+.book-feature-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  padding: var(--sp-6);
+  cursor: pointer;
+  list-style: none;
+}
+.book-feature-summary::-webkit-details-marker { display: none; }
+.book-feature-cover { width: var(--book-w-lg); height: auto; border-radius: var(--radius-sm); flex-shrink: 0; }
+.book-feature-body { display: flex; flex-direction: column; gap: var(--sp-2); }
+.book-feature-title { font-family: var(--f-head); font-size: var(--fs-xl); font-weight: var(--fw-bold); color: var(--c-charcoal); line-height: var(--lh-snug); }
+.book-feature-toggle { display: inline-flex; align-items: center; gap: var(--sp-2); font-weight: var(--fw-semibold); font-size: var(--fs-sm); color: var(--c-teal); margin-top: var(--sp-2); }
+.book-feature-hide { display: none; align-items: center; gap: var(--sp-2); }
+.book-feature[open] .book-feature-show { display: none; }
+.book-feature[open] .book-feature-hide { display: inline-flex; }
+.book-feature-expand { display: flex; flex-direction: column; gap: var(--sp-4); border-top: var(--border) solid var(--c-line); margin-top: var(--sp-2); padding: var(--sp-6); }
+
+/* "Pročitajte više" za duže biografije (O nama, "Naš tim") */
+.bio-more { margin-top: var(--sp-2); }
+.bio-more-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  color: var(--c-teal);
+  cursor: pointer;
+  list-style: none;
+}
+.bio-more-toggle::-webkit-details-marker { display: none; }
+.bio-more-hide { display: none; }
+.bio-more[open] .bio-more-show { display: none; }
+.bio-more[open] .bio-more-hide { display: inline; }
+.bio-more-body { display: flex; flex-direction: column; gap: var(--sp-4); margin-top: var(--sp-4); }
+
 /* ===================== Blog ===================== */
 .blog-filter { margin-bottom: var(--sp-7); }
 .card-post {
@@ -1131,8 +1170,6 @@ site-footer { display: block; background: var(--c-ink); color: var(--c-white-80)
     --spotlight-h: 20rem;
   }
 
-  .topbar-group .topbar-item:first-child { display: none; }
-
   /* Collapsed nav that opens in normal flow below the logo row */
   .navbar-inner { flex-wrap: wrap; }
   .nav-toggle { display: inline-flex; }
@@ -1200,7 +1237,7 @@ site-footer { display: block; background: var(--c-ink); color: var(--c-white-80)
   }
 
   /* Top bar keeps only phone and language */
-  .topbar-group .topbar-item:nth-child(3),
+  .topbar-group .topbar-item:nth-child(2),
   .topbar-group .topbar-item[aria-label] { display: none; }
   .nav-toggle-label { display: none; }
 
@@ -1256,6 +1293,8 @@ site-footer { display: block; background: var(--c-ink); color: var(--c-white-80)
 
   .value-row { flex-direction: column; }
   .card-value { flex-basis: auto; }
+
+  .book-feature-summary { flex-direction: column; align-items: flex-start; }
 
   .compare-row { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
 
