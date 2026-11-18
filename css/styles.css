@@ -101,7 +101,11 @@
   --stat-basis-sm: 4.5rem;
   --media-tall-h: 34rem;
   --value-basis: 9rem;
+  --spotlight-h: 22rem;
+  --spotlight-lift: 0.625rem;
   --dot: 0.4rem;
+  --nav-btn: 2.75rem;
+  --progress-h: 0.25rem;
   --textarea-h: 8rem;
   --mark-w: 1.75rem;
   --mark-h: 0.125rem;
@@ -291,6 +295,45 @@ svg {
 .link-plain { color: var(--c-teal); font-weight: var(--fw-medium); }
 .link-plain:hover { text-decoration: underline; }
 
+.button-fill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-3) var(--sp-6);
+  border-radius: var(--radius-pill);
+  font-family: var(--f-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  border: var(--border-strong) solid var(--c-teal);
+  color: var(--c-teal);
+  background-color: transparent;
+  background-image: linear-gradient(var(--c-teal), var(--c-teal));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: var(--zero) var(--full);
+  transition: background-size var(--t-fast) ease-out, color var(--t-fast), border-color var(--t-fast);
+  align-self: flex-start;
+  cursor: pointer;
+}
+.button-fill:hover { background-size: var(--full) var(--full); color: var(--c-white); }
+
+.button-fill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--zero);
+  margin-right: var(--zero);
+  opacity: var(--zero);
+  overflow: hidden;
+  transition: width var(--t-fast) ease-out, margin-right var(--t-fast) ease-out, opacity var(--t-fast) ease-out;
+}
+.button-fill:hover .button-fill-icon {
+  width: var(--icon-sm);
+  margin-right: var(--sp-2);
+  opacity: var(--full);
+}
+
 /* ===================== Header component ===================== */
 site-header {
   display: block;
@@ -390,6 +433,103 @@ site-header {
   color: var(--c-white);
 }
 .hero-lead { font-size: var(--fs-md); color: var(--c-white-80); }
+
+/* ===================== Hero slider (naslovna, tri rotirajuće najave) ===================== */
+.hero-slider { background-color: var(--c-ink); display: flex; flex-direction: column; }
+.hero-slider-viewport { overflow: hidden; width: var(--full); }
+.hero-slider-track { display: block; }
+.hero-slide {
+  display: none;
+  opacity: var(--zero);
+  width: var(--full);
+  background-color: var(--c-ink);
+  background-size: cover;
+  background-position: center;
+  color: var(--c-white);
+  transition: opacity 0.5s ease;
+}
+.hero-slide.is-active { display: block; }
+.hero-slide.is-visible { opacity: var(--full); }
+.hero-slide-konferencija {
+  background-image:
+    linear-gradient(90deg, var(--c-overlay-start), var(--c-overlay-end)),
+    url("../images/hero-slide-konferencija.png");
+}
+.hero-slide-pocetna {
+  background-image:
+    linear-gradient(90deg, var(--c-overlay-start), var(--c-overlay-end)),
+    url("../images/Eksternalizirana-funkcija.png");
+}
+.hero-slide-rjesenja {
+  background-image:
+    linear-gradient(90deg, var(--c-overlay-start), var(--c-overlay-end)),
+    url("../images/hero-slide-rjesenja.png");
+}
+
+/* Postepeno pojavljivanje teksta i gumba svakog slajda */
+@keyframes hero-reveal {
+  from { opacity: var(--zero); transform: translateY(var(--sp-4)); }
+  to { opacity: var(--full); transform: translateY(var(--zero)); }
+}
+.hero-slide .eyebrow-light,
+.hero-slide .hero-title,
+.hero-slide .hero-lead,
+.hero-slide .button-row > * { opacity: var(--zero); }
+.hero-slide.is-visible .eyebrow-light { animation: hero-reveal 0.6s ease forwards; animation-delay: 0.1s; }
+.hero-slide.is-visible .hero-title { animation: hero-reveal 0.6s ease forwards; animation-delay: 0.25s; }
+.hero-slide.is-visible .hero-lead { animation: hero-reveal 0.6s ease forwards; animation-delay: 0.4s; }
+.hero-slide.is-visible .button-row > *:nth-child(1) { animation: hero-reveal 0.6s ease forwards; animation-delay: 0.55s; }
+.hero-slide.is-visible .button-row > *:nth-child(2) { animation: hero-reveal 0.6s ease forwards; animation-delay: 0.68s; }
+
+/* Donja traka: brojač, traka trajanja, prethodna/sljedeća - jedan stalan element, vizualno
+   povučen preko dna trenutne fotke negativnom marginom (bez position: absolute) */
+.hero-slider-controls-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  margin-top: calc((var(--nav-btn) + var(--sp-6) * 2) * -1);
+  padding-top: var(--sp-6);
+  padding-bottom: var(--sp-6);
+}
+.hero-slider-counter {
+  font-family: var(--f-head);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--c-white);
+  flex-shrink: 0;
+}
+.hero-slider-counter-total { color: var(--c-white-60); }
+.hero-slider-progress {
+  flex: 1 1 auto;
+  height: var(--progress-h);
+  background: var(--c-white-20);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+.hero-slider-progress-fill {
+  width: var(--zero);
+  height: var(--full);
+  background: var(--c-gold);
+  animation: hero-slider-fill 7s linear infinite;
+}
+@keyframes hero-slider-fill {
+  from { width: var(--zero); }
+  to { width: var(--full); }
+}
+.hero-slider-nav { display: flex; gap: var(--sp-3); flex-shrink: 0; }
+.hero-slider-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nav-btn);
+  height: var(--nav-btn);
+  border: var(--border-strong) solid var(--c-white);
+  background: transparent;
+  color: var(--c-white);
+  cursor: pointer;
+  transition: background var(--t-fast);
+}
+.hero-slider-nav-btn:hover { background: var(--c-white-10); }
 
 .hero-card {
   display: flex;
@@ -673,6 +813,45 @@ site-header {
   border-radius: var(--radius-pill);
 }
 
+/* ===================== Spotlight cards (naslovna, Brzi odabir) ===================== */
+.card-spotlight {
+  min-height: var(--spotlight-h);
+  background-size: cover;
+  background-position: center;
+  transition: background-image var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast);
+}
+.card-spotlight:hover {
+  transform: translateY(calc(var(--spotlight-lift) * -1));
+  box-shadow: var(--zero) var(--shadow-y-lg) var(--shadow-blur-lg) var(--c-shadow-strong);
+}
+.card-spotlight-icon { border: var(--border-strong) solid transparent; transition: color var(--t-fast), background-color var(--t-fast), border-color var(--t-fast); }
+.card-spotlight:hover .card-spotlight-icon { color: var(--c-white); background-color: transparent; border-color: var(--c-white); }
+.card-spotlight .card-title,
+.card-spotlight .card-text { transition: color var(--t-fast); }
+.card-spotlight:hover .card-title,
+.card-spotlight:hover .card-text { color: var(--c-white); }
+.card-spotlight:hover .button-fill { border-color: var(--c-white); color: var(--c-white); }
+.card-spotlight:hover .button-fill:hover { border-color: var(--c-teal); color: var(--c-white); }
+
+.card-spotlight-savjetovanje {
+  background-image: linear-gradient(var(--c-white), var(--c-white)), url("../images/card-spotlight-savjetovanje.png");
+}
+.card-spotlight-savjetovanje:hover {
+  background-image: linear-gradient(90deg, var(--c-overlay-start), var(--c-overlay-end)), url("../images/card-spotlight-savjetovanje.png");
+}
+.card-spotlight-edukacije {
+  background-image: linear-gradient(var(--c-white), var(--c-white)), url("../images/card-spotlight-edukacije.png");
+}
+.card-spotlight-edukacije:hover {
+  background-image: linear-gradient(90deg, var(--c-overlay-start), var(--c-overlay-end)), url("../images/card-spotlight-edukacije.png");
+}
+.card-spotlight-rjesenja {
+  background-image: linear-gradient(var(--c-white), var(--c-white)), url("../images/card-spotlight-rjesenja.png");
+}
+.card-spotlight-rjesenja:hover {
+  background-image: linear-gradient(90deg, var(--c-overlay-start), var(--c-overlay-end)), url("../images/card-spotlight-rjesenja.png");
+}
+
 /* ===================== Services ===================== */
 .note-box {
   display: flex;
@@ -949,6 +1128,7 @@ site-footer { display: block; background: var(--c-ink); color: var(--c-white-80)
     --media-h: 22rem;
     --portrait-h: 28rem;
     --media-tall-h: 24rem;
+    --spotlight-h: 20rem;
   }
 
   .topbar-group .topbar-item:first-child { display: none; }
@@ -1016,6 +1196,7 @@ site-footer { display: block; background: var(--c-ink); color: var(--c-white-80)
     --media-tall-h: 15rem;
     --card-scroll-w: 82%;
     --event-date-w: 3.5rem;
+    --spotlight-h: auto;
   }
 
   /* Top bar keeps only phone and language */
